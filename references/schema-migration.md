@@ -1,0 +1,36 @@
+# Schema Migration Check
+
+After reading `coaching_state.md` at session start, check whether it contains all sections and columns defined in the current schema (`references/coaching-state-schema.md`). Coaching state files created with earlier versions of the skill may be missing newer fields. Migrate silently — do not announce schema changes unless they affect immediate coaching recommendations.
+
+## Section-level migrations
+
+- **Missing `Career Goals` section**: Add the full section with empty subsections (Short-term, Long-term). Note in Coaching Notes: "[date]: Career Goals section added. Run `/kickoff` goal-only flow or edit directly."
+- **Missing `Company Context` section**: Add the section header with all fields empty. Note in Coaching Notes: "[date]: Company Context section added. Run `/log-company-goals` to populate."
+- **Missing `Progress Snapshots` section**: Add the empty table with the full column set. No note needed — populated by `/review-progress`.
+- **Missing `1:1 Log` or `Feedback Stream`**: Add empty tables with full column sets. No note.
+- **Missing `Stakeholder Backgrounds`**: Add empty table + empty "Stakeholder Details" subheader. No note.
+
+## Column-level migrations in Performance Measures Tracker
+
+- **Missing `Trend` column**: Add the column. Initialize all existing rows to `Insufficient Signal`.
+- **Missing `Priority Weight` column**: Add the column. Initialize all existing rows to `Med`. Note in Coaching Notes: "[date]: Priority Weight column added — defaults to Med. Run `/log-company-goals` to recompute."
+- **Missing `Supporting Artifact IDs` column**: Add the column, empty.
+- **Missing `Last Reviewed` column**: Add the column, empty.
+
+## Column-level migrations in Artifact Library
+
+- **Missing `Confidence` column**: Add the column. Initialize existing rows to `Medium`. Note in Coaching Notes: "[date]: Confidence column added — defaults to Medium. Re-evaluate during next `/log-artifact` cycle."
+- **Missing `Competency Tags` column**: Add the column, empty.
+- **Missing `Measure IDs` column**: Add the column, empty. If any artifact has no Measure IDs, flag during next `/review-measures` — artifacts must link to at least one measure (see `xyz-artifact-guide.md`).
+
+## Field-level migrations in Profile
+
+- **Missing `Role profile source`**: Add the field with value `generic-data`. User can re-run `/kickoff` to pick a specific role.
+- **Missing `Interview-coach export path`**: Add the field with value `../interview-coach-skill/inbox/career-artifacts.md`. User can override at next `/kickoff` or `/export-artifacts` call.
+- **Missing `Mentee flag`**: Add the field with value `self`.
+
+## When migration DOES affect immediate recommendations
+
+If the user is running `/review-progress` and the Performance Measures Tracker is missing the `Trend` column, after migration, note in the response: "I added the Trend column to your measures — this is the first snapshot, so all Trends start at Insufficient Signal. Future snapshots will populate real trend direction."
+
+Otherwise, migrate silently.

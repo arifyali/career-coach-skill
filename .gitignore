@@ -1,0 +1,20 @@
+# OS
+.DS_Store
+
+# Personal coaching data — contains goals, performance measures, 1:1 notes, feedback, artifacts
+coaching_state.md
+coaching_state.local.md
+
+# Personal uploads (LinkedIn PDFs, leveling docs, team OKRs, etc.)
+uploads/
+tmp/
+*.pdf
+
+# Scratch files
+*.local.md
+
+# Active skill file (created by copying SKILL.md during setup)
+CLAUDE.md
+
+# State exports / backups
+career-coach-backup-*.md

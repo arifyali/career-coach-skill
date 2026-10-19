@@ -1,0 +1,107 @@
+# review-progress — Score trajectory toward career goals
+
+Produce a Progress Snapshot — Momentum Score and Trajectory Call. This is the "how am I trending" lens; `/review-measures` is the "what should I focus on" lens. Run `/review-progress` monthly (default) or at every major review-cycle checkpoint.
+
+Reads: everything. The Momentum formula uses Performance Measures Tracker + Progress Snapshots history + Feedback Stream + Career Goals.
+
+## Prerequisites
+
+- Performance Measures Tracker must exist and be non-empty.
+- `Career Goals.Short-term` should be set with a target review window; otherwise Trajectory Call is `Unassessed — set a short-term goal first`.
+
+## Flow
+
+### Step 1 — Review window
+
+Default: 30 days (if `Review cycle timeline` is `ongoing`) OR span from previous snapshot to today.
+
+Explicit override: `/review-progress since 2026-09-01` or `/review-progress last-quarter`.
+
+### Step 2 — Trend per measure
+
+For every measure in the Tracker:
+
+1. Find the prior Progress Snapshot (if any). Compare current maturity to prior maturity.
+2. Compare Evidence Strength now vs. then.
+3. Apply the Trend rules from `rubric-performance.md`:
+   - Maturity moved up OR Evidence Strength moved up at same level → **Improving**
+   - Maturity and Evidence Strength both unchanged → **Flat**
+   - Maturity dropped, OR Evidence Strength weakened, OR no new evidence in the window on an actively-worked measure → **Declining**
+   - No prior snapshot OR no artifacts logged against the measure in the window → **Insufficient Signal**
+4. Write the Trend to the Performance Measures Tracker Trend column.
+
+### Step 3 — Momentum Score
+
+Compute per the formula in `rubric-performance.md`. Show every input in the response:
+
+```
+Measure M001: Priority Weight High (w=3), Maturity Meeting (66) + Trend Improving (+5) = 71
+Measure M002: Priority Weight Med  (w=2), Maturity Emerging (33) + Trend Flat (+0)      = 33
+...
+Weighted sum: X / weight sum: Y
+Momentum = round(X/Y) = Z
+```
+
+### Step 4 — Feedback floor check
+
+If 3+ Critical feedback entries in Feedback Stream in the last 30 days are linked to High-weighted measures, cap Momentum at 55 and announce:
+
+"Feedback floor is active — [N] Critical feedback entries in 30 days on High-weight measures. Momentum capped at 55 regardless of math."
+
+### Step 5 — Trajectory Call
+
+Translate Momentum to a plain-English verdict per the thresholds in `rubric-performance.md`:
+
+- Ahead / On Track / Lagging / At Risk / Unassessed
+
+Consider the Short-term Career Goal's `Target review window` — the thresholds shift when the window is close.
+
+### Step 6 — Snapshot note
+
+Compose a 1-2 line note summarizing what moved since the last snapshot. Call out any major shifts: a measure jumping from Not Yet Demonstrated to Emerging, a feedback floor activating, a Momentum delta of ±10 or more.
+
+### Step 7 — Write
+
+- Append a new Progress Snapshot row with: date, snapshot note, Measures Meeting+ count, Measures Below Target count, Momentum Score, Trajectory Call.
+- Confirm all Trend column updates in Performance Measures Tracker (silent — don't ask per-measure, this is bulk).
+- Append Session Log row: `review-progress | Momentum [N], Trajectory [X], delta [+/-N]`.
+
+## Coaching commentary
+
+Full response blueprint. At Level 5 directness, lead with the biggest signal (gap, overclaim, or inflection). At Levels 1-4, start with What Is Working.
+
+- **What I Heard**: paraphrase of state ("You've logged 7 artifacts in the last 30 days, 4 against High-weight measures. Two Critical feedback entries on M003 from your manager.")
+- **What Is Working**: measures where Trend is Improving with Strong Evidence.
+- **Gaps To Close**: Declining measures, Over-assessment flags, feedback floor if active.
+- **Priority Move**: the single highest-leverage next step (specific command).
+- **Next Step**: the second-highest-leverage move.
+
+## Output Schema
+
+```markdown
+## Progress Snapshot — [date]
+
+### Trajectory: [On Track / Lagging / At Risk / Ahead / Unassessed]
+Momentum: **[N]/100** (delta vs. last snapshot: [+N / -N / first snapshot])
+Review window: [date] → [date]
+
+### Measure Movement
+- **Improved**: M###, M###
+- **Flat**: M###, M###
+- **Declining**: M### — [why]
+- **No signal**: M###, M###
+
+### Momentum Math
+[one-line per measure showing weight * (maturity + trend adjustment)]
+Weighted sum / weight sum = Momentum
+Feedback floor: [active / not active]
+
+### Coaching Read
+**What I Heard**: [paraphrase]
+**What Is Working**: [1-2 lines]
+**Gaps To Close**: [1-2 lines]
+**Priority Move**: [specific action]
+**Next Step**: [second action]
+
+**Recommended next**: [top move]. **Alternatives**: `/log-artifact`, `/log-1-1`, `/review-measures`
+```

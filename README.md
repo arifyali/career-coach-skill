@@ -1,0 +1,119 @@
+# career-coach-skill
+
+A persistent, evidence-driven career coach for data professionals — built as a Claude Code skill. Tracks performance against your company's leveling criteria, enriches your model of your manager and stakeholders over time, logs 1:1s and inbound feedback, builds a library of accomplishments in Google XYZ format, and shows you how you're trending toward your next career stage.
+
+Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM, and generic data roles. Hands off to [`interview-coach-skill`](../interview-coach-skill) when it's time to prep interviews.
+
+## What it does
+
+- **Tracks performance against your actual leveling rubric.** Ingest your company's leveling doc as a PDF (or paste it in); the skill extracts each criterion as a trackable measure.
+- **Enriches your model of manager and stakeholders.** Export their LinkedIn as PDF; the skill parses it and asks targeted gap questions ("what are they measuring you on that's *not* on the leveling doc?").
+- **Captures 1:1s and feedback as first-class inputs.** A 1:1 entry can update manager background, add feedback to the stream, and refresh the review date on linked measures — all from one flow.
+- **Captures accomplishments in Google XYZ format.** "Accomplished X as measured by Y, by doing Z." The quantified-Y rule is enforced — vague wins don't make it into the library.
+- **Shows you how you're trending.** `/review-progress` computes a Momentum Score (0-100) and a Trajectory Call (On Track / Lagging / At Risk / Ahead) relative to your short-term career goal. The formula is simple and visible — you can dispute specific inputs.
+- **Hands off to interview-coach-skill.** `/export-artifacts` emits your XYZ library in a format `interview-coach-skill` can seed STAR drafts from. Career coaching and interview coaching stay separate but connected.
+
+## Quick start
+
+### 1. Clone this repo
+
+```sh
+git clone https://github.com/<your-fork>/career-coach-skill.git
+cd career-coach-skill
+```
+
+### 2. Activate the skill
+
+Claude Code picks up skills from the current working directory. From this repo's root, open a Claude Code session and run `/kickoff`.
+
+The first time you run `/kickoff`, the skill:
+
+- Copies `coaching_state.example.md` to `coaching_state.md` (gitignored — stays local).
+- Asks for your role, current level, target level, company, review cycle, short-term career goal, optional long-term goal, company/team priorities, feedback directness, and the path to export artifacts for `interview-coach-skill` if you use it.
+
+### 3. Seed context
+
+After `/kickoff`, the recommended sequence:
+
+```
+/ingest-manager <path-to-manager-linkedin.pdf>
+/ingest-leveling <path-to-leveling-doc.pdf>
+/ingest-stakeholder <path> <role>    # repeat per key stakeholder
+```
+
+LinkedIn PDFs: on LinkedIn, go to a profile -> "More" -> "Save to PDF". The skill reads the PDF directly, extracts career arc + prior roles + current scope, then asks targeted gap questions.
+
+### 4. Capture work as it happens
+
+```
+/log-artifact        # log an accomplishment (quantified Y enforced)
+/log-1-1             # capture a 1:1
+/log-feedback        # standalone feedback (Slack, email, review doc)
+```
+
+### 5. Check trajectory
+
+```
+/review-measures     # per-measure coverage + prescriptive next move
+/review-progress     # Momentum + Trajectory Call + Progress Snapshot
+```
+
+Review monthly; definitely before any formal review cycle.
+
+### 6. Export for interview prep
+
+When it's time to prep interviews, `/export-artifacts` writes your XYZ library to `../interview-coach-skill/inbox/career-artifacts.md` by default (configurable at `/kickoff` or per-run). In `interview-coach-skill`, run `/stories add --from-career-coach` to seed STAR drafts.
+
+## Public vs. private — what's in the repo
+
+**Committed (public, shareable):**
+
+- `SKILL.md`, `README.md`, `LICENSE`, `.gitignore`
+- Everything under `references/` and `references/commands/`
+- `coaching_state.example.md` (empty schema template)
+
+**Gitignored (private, stays local):**
+
+- `coaching_state.md` — your actual state
+- `uploads/`, `tmp/`, `*.pdf` — ingested PDFs
+- `*.local.md` — scratch
+- `career-coach-backup-*.md` — state exports
+
+The split means you can share this repo publicly (GitHub, with mentees, with coworkers) without leaking your 1:1 notes, feedback, or accomplishments.
+
+## Moving between machines
+
+```
+/export-state                              # writes to ~/career-coach-backup-YYYYMMDD.md
+# (copy the bundle to the other machine)
+/import-state ~/career-coach-backup-20270115.md
+```
+
+Bundles are plain markdown with a checksum. The `/import-state` flow requires explicit confirmation before overwriting any existing state.
+
+## Deploying to mentees
+
+The skill is written to flex across data roles via `references/role-profiles.md`. For each mentee:
+
+1. They clone this repo (your fork or main — either works).
+2. They run `/kickoff` fresh — generates their own `coaching_state.md`. Nothing in your state is shared.
+3. They pick their role profile at kickoff; the skill adapts example phrasings and seed measures to that role.
+4. If they don't use `interview-coach-skill`, they set `Profile.Interview-coach export path` to `none` and the handoff layer is dormant.
+
+Supported role profiles: `data-scientist`, `analytics-engineer`, `bi-engineer`, `data-pm`, `generic-data`.
+
+## Design philosophy
+
+- **Evidence over narrative.** Every maturity call, Momentum Score, and Trajectory Call cites artifact IDs, feedback dates, or 1:1 Log rows. If evidence is weak, the skill says so.
+- **Friction where it matters.** The quantified-Y guardrail on artifacts, the explicit confirmation on state overwrites, the user-confirmed updates on Manager Background — these are the parts that prevent a library of plausible-sounding nothing.
+- **Simple scoring, visible math.** The Momentum formula is a short weighted average. The response shows every input. You can dispute specific maturity calls, not an opaque score.
+- **One source of truth per concept.** XYZ artifacts live here. STAR enrichment lives in `interview-coach-skill`. Performance measures live here. Interview stories live there. The handoff is one-way and file-based.
+- **State is yours.** Nothing phones home. Everything persists to a single gitignored file you own.
+
+## Commands
+
+See `/help` in-session, or `references/commands/help.md` for the full list.
+
+## License
+
+MIT. See `LICENSE`.
