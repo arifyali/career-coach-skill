@@ -13,6 +13,29 @@ Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM
 - **Shows you how you're trending.** `/review-progress` computes a Momentum Score (0-100) and a Trajectory Call (On Track / Lagging / At Risk / Ahead) relative to your short-term career goal. The formula is simple and visible — you can dispute specific inputs.
 - **Hands off to interview-coach-skill.** `/export-artifacts` emits your XYZ library in a format `interview-coach-skill` can seed STAR drafts from. Career coaching and interview coaching stay separate but connected.
 
+## Commands at a glance
+
+| Phase | Command | When to use |
+|---|---|---|
+| Setup | `/kickoff` | First run; also when role, level, or career goals change |
+| Setup | `/ingest-manager <pdf>` | After kickoff; whenever manager changes |
+| Setup | `/ingest-stakeholder <pdf>` | Per key stakeholder; repeat as team shifts |
+| Setup | `/ingest-leveling <pdf-or-paste>` | After kickoff; re-run when the leveling doc updates |
+| Meetings — prep | `/prep-1-1 [--with <ids>] [artifact]` | Before a 1:1 with your manager (optionally joint) |
+| Meetings — prep | `/prep-stakeholder <id1> [id2 ...] [--with-manager] [--with-skip] [artifact]` | Before a stakeholder meeting; 1+ participants |
+| Capture | `/log-artifact` | Shipped something measurable |
+| Capture | `/log-1-1` | After a 1:1 (auto-debriefs against matching prep) |
+| Capture | `/log-stakeholder-meeting <id-or-name>` | After a stakeholder meeting (prep-aware) |
+| Capture | `/log-feedback` | Standalone feedback (Slack, email, review doc) |
+| Review | `/review-measures` | Monthly, or when evidence feels thin on a measure |
+| Review | `/review-progress` | Monthly; definitely before any formal review cycle |
+| Review | `/log-company-goals` | New quarter, OKR refresh, team priority shift |
+| Portability | `/export-artifacts` | Starting interview prep |
+| Portability | `/export-state` | Backing up or moving machines |
+| Portability | `/import-state <path>` | Restoring state on a new machine |
+| Session | `/status` | Session start (auto); or explicitly for a trajectory read |
+| Session | `/help` | Reminder of this list in-session |
+
 ## Quick start
 
 ### 1. Clone this repo
@@ -130,9 +153,9 @@ Supported role profiles: `data-scientist`, `analytics-engineer`, `bi-engineer`, 
 - **One source of truth per concept.** XYZ artifacts live here. STAR enrichment lives in `interview-coach-skill`. Performance measures live here. Interview stories live there. The handoff is one-way and file-based.
 - **State is yours.** Nothing phones home. Everything persists to a single gitignored file you own.
 
-## Commands
+## Command reference
 
-See `/help` in-session, or `references/commands/help.md` for the full list.
+See **Commands at a glance** near the top of this README for the full table. In-session, run `/help` for the same list; the canonical source is `references/commands/help.md`.
 
 ## License
 
