@@ -10,6 +10,16 @@ Before running the question flow:
 2. If NOT: copy `coaching_state.example.md` to `coaching_state.md`. This is the empty template with the schema skeleton — never commit this copy (it's gitignored).
 3. If it DOES exist and the user re-ran `/kickoff`: branch to the **Mid-Role Update** flow below.
 
+## Pre-start detection
+
+Watch for signals that the user hasn't started the job yet. Any of these flip the flow to the **Pre-start variant** at the bottom:
+
+- The user volunteers it directly ("I haven't started yet", "my start date is X").
+- Step 1 Q5 (Review cycle timeline) comes back as unknown AND Steps 1 Q1-Q4 named a company the user is joining, not working at.
+- Company Context fields come back as TBD because the user hasn't been onboarded.
+
+The pre-start variant doesn't replace the main flow — it adjusts seeds, defaults, and the first-plan shape in Steps 2, 4, 5, and 7. Full details in the **Pre-start variant** section below.
+
 ## Step 1 — Role + level
 
 One question at a time:
@@ -110,6 +120,80 @@ Write a Session Log row: `kickoff | Profile + Career Goals + Company Context ini
 
 **Recommended next**: `/ingest-leveling <path>` — [reason tied to review window]. **Alternatives**: `/ingest-manager`, `/log-artifact`, `/help`
 ```
+
+## Pre-start variant
+
+Triggered by the detection rules above. Apply these adjustments to the main flow:
+
+### Step 1 Q5 adjustment — Review cycle timeline
+
+The user doesn't know yet. Record `TBD — establish in first 2-3 weeks on the job` and add a Coaching Note:
+> [date]: Review cycle timeline TBD. Establish in first 2-3 weeks on the job via first manager 1:1; update `Profile.Review cycle timeline` + `Career Goals.Short-term.Target review window`.
+
+### Step 2 adjustment — Short-term career goal seed
+
+The default `"Promote to [target level] by [review window]"` seed is misleading pre-start — the user has no evidence base yet, and a 6-12 month promotion horizon from a start date that hasn't happened is almost always too optimistic. Future `/review-progress` calls would read "Lagging" for the entire first 6 months even if ramping on track.
+
+Use this seed instead:
+
+> **Land cleanly in [current level] at [company] and build the evidence base for the [target level] promotion case.**
+
+With pre-start-shaped success criteria:
+- First 30 days: team / stakeholder map complete; measures ingested; first artifact logged
+- First 90 days: shipped at least one end-to-end project with quantified Y
+- 6 months: 3+ artifacts against each High-Priority-Weight measure; manager-confirmed on track for [target level] case
+
+Offer the seed; let the user edit or replace. The important thing is that the goal reflects "land + build case" shape, not "promote by date" shape.
+
+### Step 4 adjustment — Company Context batching
+
+After the first TBD answer in Step 4, offer to batch-TBD the rest:
+
+> I'll mark the remaining Company Context fields (team OKRs, source, confidence) all `TBD` and jump to Step 5 — or we keep going one question at a time if you have more signal on team OKRs than company-wide. Which?
+
+If the user accepts the batch, mark Company Mission / Team Mission / Company OKRs / Team OKRs / Source all `TBD` and add a Coaching Note:
+> [date]: Pre-start user. Start date [date]. All Company Context fields TBD — fill via `/log-company-goals` in first 2-3 weeks after start, **before** `/ingest-leveling`, so Priority Weights land correctly on measures from day one.
+
+### Step 5 adjustment — Role-to-priority mapping
+
+If Company Context is uniformly TBD, Role-to-priority mapping has nothing to anchor against. Record `Role-to-priority mapping: TBD` and extend the Step 4 Coaching Note:
+> Role-to-priority mapping TBD. Re-ask once `/log-company-goals` fills Company Context; recompute Priority Weights across all measures.
+
+### Step 7 adjustment — First-session recommendations
+
+Replace the standard First Plan with the pre-start plan. The pre-start Priority Move is `/ingest-manager`, not `/ingest-leveling` — the leveling doc isn't accessible yet, but the public manager LinkedIn is.
+
+```markdown
+## First Plan
+
+### Now (pre-start, before [start date])
+1. `/ingest-manager <path-to-manager-linkedin.pdf>` — Priority Move; sets up every downstream prep + debrief flow and sharpens the first 1:1
+2. `/prep-1-1` (optional dry run) — surfaces what the skill *would* ask with empty Manager Background; a second run after `/ingest-manager` is meaningfully sharper
+
+### First week on the job ([start date] → ~[start date + 7])
+3. `/log-company-goals` — fill all the TBD Company Context fields; **run this before step 4** so Priority Weights compute correctly
+4. `/ingest-leveling <leveling-doc.pdf>` — generates the Performance Measures Tracker
+5. `/log-1-1` to debrief the first manager 1:1; extract the review cycle timeline and update Profile
+
+### First 30 days
+6. `/ingest-stakeholder <linkedin.pdf>` for each key stakeholder met
+7. First `/log-artifact` once something ships (quantified Y rule applies from day one)
+
+### Before the promotion case
+8. Monthly `/review-progress` to track Momentum and Trajectory against the "land cleanly + build case" goal
+
+**Recommended next**: `/ingest-manager <path-to-manager-linkedin.pdf>` — public LinkedIn is enough. Builds priors for the first 1:1 before day one. **Alternatives**: `/prep-1-1` (dry run), `/help`
+```
+
+### Pre-start Coaching Notes summary
+
+By end of kickoff, a pre-start user should have at least these Coaching Notes:
+- Pre-start user + start date + Company Context batched to TBD
+- Review cycle timeline TBD; establish in first 2-3 weeks on the job
+- Role-to-priority mapping TBD; re-ask after `/log-company-goals`
+- Any long-term career goal uncertainty worth revisiting at a specific milestone (e.g., SDS II case)
+
+Session Log row still fires normally: `kickoff | Profile + Career Goals + Company Context initialized (pre-start user; most Company Context TBD)`.
 
 ## Mid-Role Update
 
