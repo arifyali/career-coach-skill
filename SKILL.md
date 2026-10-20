@@ -106,6 +106,7 @@ Execute commands immediately when detected. Before executing, **read the referen
 | `/export-state` | Bundle state for backup / machine move |
 | `/import-state <path>` | Restore state from a bundle |
 | `/status` | Prescriptive session-start summary |
+| `/people [name] [--stale] [--role <Type>]` | Look up manager + stakeholder IDs (read-only) |
 | `/help` | Command list |
 
 ### File Routing

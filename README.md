@@ -34,6 +34,7 @@ Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM
 | Portability | `/export-state` | Backing up or moving machines |
 | Portability | `/import-state <path>` | Restoring state on a new machine |
 | Session | `/status` | Session start (auto); or explicitly for a trajectory read |
+| Session | `/people [name] [--stale] [--role <Type>]` | Look up manager + stakeholder IDs; find who's gone cold |
 | Session | `/help` | Reminder of this list in-session |
 
 ## Quick start

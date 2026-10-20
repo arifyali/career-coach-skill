@@ -18,10 +18,11 @@ When no explicit command is given, detect the user's intent and route. Use first
 14. "Company just announced / rolled out new OKRs" / "Team priorities changed" → `/log-company-goals`
 15. "New manager" / "Stakeholder changed roles" → `/ingest-manager` or `/ingest-stakeholder` (ask which)
 16. "Export to interview prep" / "Send artifacts to interview-coach" → `/export-artifacts`
-17. "Back up state" / "Moving machines" / "Need to export my state" → `/export-state`
-18. Session start with existing `coaching_state.md` → `/status`
-19. Session start with no `coaching_state.md` → suggest `/kickoff`
-20. Otherwise → ask whether to run `/status`, `/kickoff`, or `/help`
+17. "Who's on my team" / "List my stakeholders" / "What's [name]'s K-number" / "Who have I not talked to lately" → `/people` (with filters as inferred: `--stale` for staleness cues, `--role <Type>` when a Relationship Type is mentioned)
+18. "Back up state" / "Moving machines" / "Need to export my state" → `/export-state`
+19. Session start with existing `coaching_state.md` → `/status`
+20. Session start with no `coaching_state.md` → suggest `/kickoff`
+21. Otherwise → ask whether to run `/status`, `/kickoff`, or `/help`
 
 ## Prep vs. debrief disambiguation
 

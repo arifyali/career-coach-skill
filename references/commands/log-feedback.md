@@ -9,7 +9,7 @@ Source is optionally attributable to a known person (`MGR` or a `K###` stakehold
 ### Step 1 — When and from whom
 
 - Date (default today)
-- "Who's this from? Give a name, `K###`, `manager`, or a label like `peer`, `recruiter`, `review doc`, `all-hands`, `unknown`."
+- "Who's this from? Give a name, `K###`, `manager`, or a label like `peer`, `recruiter`, `review doc`, `all-hands`, `unknown`." (If the user needs to look up a stakeholder ID, point them at `/people` — it's a read-only lookup. The resolution flow in this step also handles substring name matches, so IDs aren't required.)
 
 Resolution — mirrors the pattern in `references/meeting-prep-guide.md`:
 

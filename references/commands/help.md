@@ -35,6 +35,7 @@ Show the user the available commands with one-line descriptions. Keep it compact
 
 ### Session
 - `/status` — Prescriptive session-start summary
+- `/people [name-substring] [--stale] [--role <Type>]` — Look up manager + stakeholder IDs (read-only)
 - `/help` — This list
 
 See README.md for the setup walkthrough and portability instructions.

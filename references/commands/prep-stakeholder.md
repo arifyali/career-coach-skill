@@ -19,6 +19,8 @@ Read `references/meeting-prep-guide.md` for the shared sequence. The prep-stakeh
 
 ### Step 1 — Resolve roster
 
+If the user needs to look up a stakeholder ID before running this command, `/people` is a read-only lookup that shows manager + stakeholders with IDs, roles, and Relationship Types. Name-substring arguments also work directly below.
+
 - Parse each positional argument against Stakeholder Backgrounds:
   - Exact `K###` match first.
   - Case-insensitive substring match on Name column next. If multiple matches, show candidates (ID, Name, Role, Team, Relationship Type) and ask which.
