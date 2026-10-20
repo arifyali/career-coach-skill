@@ -12,7 +12,7 @@ When no explicit command is given, detect the user's intent and route. Use first
 8. "I just had a 1:1" / "My manager said" / "In my 1:1 today" / "How did it go" / "Finished my 1:1" → `/log-1-1` (prep-aware; matches any Scheduled prep with `MGR` in the roster)
 9. "Debrief [stakeholder]" / "Stakeholder meeting is done" / "Just got out of the meeting with [name]" → `/log-stakeholder-meeting <id>`
 10. "The review with [names] is done" (ambiguous when both MGR and K### were in the room) → ask: `/log-1-1` or `/log-stakeholder-meeting`. Default to `/log-stakeholder-meeting` if the question frame is stakeholder-centric.
-11. "A stakeholder said" / "Got feedback from [name/team]" / "A reviewer flagged" (no meeting context) → `/log-feedback`
+11. "A stakeholder said" / "Got feedback from [name/team]" / "A reviewer flagged" / "My manager sent a Slack saying..." (no meeting context) → `/log-feedback` (attribution resolves names to `MGR` or `K###` where possible per `references/commands/log-feedback.md`)
 12. "How am I doing" / "Am I on track" / "What's my trajectory" / "Review time coming" → `/review-progress`
 13. "What should I focus on" / "Which measure needs work" → `/review-measures`
 14. "Company just announced / rolled out new OKRs" / "Team priorities changed" → `/log-company-goals`

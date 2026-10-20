@@ -135,7 +135,7 @@ _(filled in at debrief)_
 ## Feedback Stream
 | Date | Source | Channel | Verbatim/Paraphrase | Sentiment | Linked Measure | Linked Artifact | Action Taken |
 |------|--------|---------|---------------------|-----------|----------------|-----------------|--------------|
-[rows — Source: manager / stakeholder ID / peer / recruiter / review doc. Channel: 1:1 / Slack / email / review / all-hands. Sentiment: Positive / Mixed / Critical.]
+[rows — Source: FK-attributed when possible (`MGR — [name]` or `K### — [name]`) or free-text label (`peer: alex` / `recruiter` / `review doc` / `all-hands` / `unknown`). Attribution flow lives in `references/commands/log-feedback.md`. Channel: 1:1 / Slack / email / review / all-hands. Sentiment: Positive / Mixed / Critical.]
 
 ## Session Log
 ### Historical Summary (when log exceeds 15 rows, summarize older entries here)
