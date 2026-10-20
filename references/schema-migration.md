@@ -22,6 +22,8 @@ After reading `coaching_state.md` at session start, check whether it contains al
 ## Column-level migrations in Stakeholder Backgrounds
 
 - **Missing `Relationship Last Reviewed` column**: Add the column, empty for all existing rows. Populated on next debrief that triggers a drift flag.
+- **Missing `Trust (them→you)` or `Trust (you→them)` columns**: Add both, default every existing row to `Medium`. No announce. First-time surfacing is during next `/vibe-check` or `/people` call. See `references/vibe-check-rubric.md` for the scoring model.
+- **Missing `Trust Log` sub-section** inside a Stakeholder Details block: add the sub-header empty. No announce.
 - **Relationship Type values from v1 informal strings**: On first read, map to the canonical enum in `references/stakeholder-relationship-types.md`. Best-effort mapping:
   - `collaborator` → `Partner`
   - `sponsor` → `Senior Partner`
@@ -35,6 +37,11 @@ After reading `coaching_state.md` at session start, check whether it contains al
 - **Missing `Confidence` column**: Add the column. Initialize existing rows to `Medium`. Note in Coaching Notes: "[date]: Confidence column added — defaults to Medium. Re-evaluate during next `/log-artifact` cycle."
 - **Missing `Competency Tags` column**: Add the column, empty.
 - **Missing `Measure IDs` column**: Add the column, empty. If any artifact has no Measure IDs, flag during next `/review-measures` — artifacts must link to at least one measure (see `xyz-artifact-guide.md`).
+
+## Field-level migrations in Manager Background
+
+- **Missing `Trust (them→you)` or `Trust (you→them)` fields**: Add both, default to `Medium`. No announce. First-time surfacing is during next `/vibe-check` or `/people` call.
+- **Missing `Manager Trust Log` sub-section** (as a `### Manager Trust Log` header beneath Manager Background): add the sub-header empty. No announce.
 
 ## Field-level migrations in Profile
 

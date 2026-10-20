@@ -47,11 +47,16 @@ Last updated: [date]
 - Open gaps / unknowns:
 - Last enriched: [date]
 - Confidence: [High (confirmed in 1:1) / Medium (inferred from PDF) / Low (user memory only)]
+- Trust (them→you): [Low / Medium / High — default Medium. Captured via `/vibe-check`; see `references/vibe-check-rubric.md`.]
+- Trust (you→them): [Low / Medium / High — default Medium.]
+
+### Manager Trust Log
+[one bullet per trust event. Format: `- [date] [direction] [↑/↓/→] [prior]→[new] — [one-line reason]`. Operational signal, never exported.]
 
 ## Stakeholder Backgrounds
-| ID | Name | Role | Team | Relationship Type | Priorities | Last Interaction | Relationship Last Reviewed | Open Gaps |
-|----|------|------|------|-------------------|------------|------------------|----------------------------|-----------|
-[rows — Relationship Type uses the canonical enum defined in `references/stakeholder-relationship-types.md`: Partner / Senior Partner / Upstream / Downstream / Customer / Reviewer / Peer. Multiple types allowed, comma-separated. Relationship Last Reviewed bumps on any debrief that triggers a drift flag.]
+| ID | Name | Role | Team | Relationship Type | Priorities | Last Interaction | Relationship Last Reviewed | Trust (them→you) | Trust (you→them) | Open Gaps |
+|----|------|------|------|-------------------|------------|------------------|----------------------------|------------------|------------------|-----------|
+[rows — Relationship Type uses the canonical enum defined in `references/stakeholder-relationship-types.md`: Partner / Senior Partner / Upstream / Downstream / Customer / Reviewer / Peer. Multiple types allowed, comma-separated. Relationship Last Reviewed bumps on any debrief that triggers a drift flag. Trust columns default to Medium; captured via `/vibe-check` per `references/vibe-check-rubric.md`. Operational signal, never exported.]
 
 ### Stakeholder Details
 #### K001 — [Name]
@@ -62,7 +67,10 @@ Last updated: [date]
 - Enrichment history: [date — what changed]
 - Confidence: [High / Medium / Low]
 
-[repeat per stakeholder]
+##### Trust Log
+[one bullet per trust event. Format: `- [date] [direction] [↑/↓/→] [prior]→[new] — [one-line reason]`. Operational signal, never exported.]
+
+[repeat Details block per stakeholder]
 
 ## Performance Measures Tracker
 | ID | Measure | Source | Current Maturity | Target Maturity | Trend | Priority Weight | Supporting Artifact IDs | Last Reviewed |

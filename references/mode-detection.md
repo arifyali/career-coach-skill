@@ -19,10 +19,13 @@ When no explicit command is given, detect the user's intent and route. Use first
 15. "New manager" / "Stakeholder changed roles" → `/ingest-manager` or `/ingest-stakeholder` (ask which)
 16. "Export to interview prep" / "Send artifacts to interview-coach" → `/export-artifacts`
 17. "Who's on my team" / "List my stakeholders" / "What's [name]'s K-number" / "Who have I not talked to lately" → `/people` (with filters as inferred: `--stale` for staleness cues, `--role <Type>` when a Relationship Type is mentioned)
-18. "Back up state" / "Moving machines" / "Need to export my state" → `/export-state`
-19. Session start with existing `coaching_state.md` → `/status`
-20. Session start with no `coaching_state.md` → suggest `/kickoff`
-21. Otherwise → ask whether to run `/status`, `/kickoff`, or `/help`
+18. "I don't trust [name]" / "[name]'s feedback is vague" / "[name] shifted the goalposts again" / "I missed a commitment to [name]" → `/vibe-check <id>` (resolve name to FK; prompt to log the trust-affecting event per the direction and type cued)
+19. "How am I doing with [name]" / "What's the vibe with my manager" / "Trust check on [name]" → `/vibe-check <id>` (deep view)
+20. "Vibe check" / "Trust status" / "How are my relationships trending" → `/vibe-check` (roster mode)
+21. "Back up state" / "Moving machines" / "Need to export my state" → `/export-state`
+22. Session start with existing `coaching_state.md` → `/status`
+23. Session start with no `coaching_state.md` → suggest `/kickoff`
+24. Otherwise → ask whether to run `/status`, `/kickoff`, or `/help`
 
 ## Prep vs. debrief disambiguation
 

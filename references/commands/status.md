@@ -28,13 +28,15 @@ Check in this order; use the first match:
 2. **Scheduled Meeting Prep within the next 7 days with no artifact ingested** AND the user mentioned the meeting in a recent session → gentle nudge: "Prep MTG### for [date] — ready to drop in the deck/doc, or want to run the prep again with fresh state?"
 3. **Review window < 14 days away** AND no `/review-progress` run in the last 7 days → `/review-progress` ("your review is in [N] days — let's get a current trajectory read").
 4. **Feedback floor active** (3+ recent Critical feedback on High-weight measures) → surface it: "Your Feedback Stream shows [N] Critical signals in 30 days on High-weight measures. We should talk about M###. Run `/review-progress` to see the Momentum impact, or `/log-1-1` if you have a 1:1 coming up to address it."
-5. **Company Context > 90 days stale** → `/log-company-goals` ("your Company Context was last refreshed [date] — if OKRs rolled over, Priority Weights are off").
-6. **Pending `non-quant-reason` artifacts with a `follow up by` date in the past** → `/log-artifact --improve A###` for each, with the specific follow-up measurement to attach.
-7. **Over-assessed measures from last `/review-measures`** → `/review-measures` to address.
-8. **No Performance Measures Tracker yet** → `/ingest-leveling <path>` ("you haven't ingested your leveling doc yet").
-9. **No artifact in last 30 days** → `/log-artifact` ("you haven't logged work in a month — let's capture what shipped").
-10. **New Meeting Log entry needed** (last Meeting Log row is > 2 weeks ago) → `/log-1-1` ("worth capturing anything from recent 1:1s") — if there's an upcoming scheduled 1:1, suggest `/prep-1-1` instead.
-11. Otherwise → prompt the user: "Nothing urgent flagging. What's on your mind?"
+5. **Low-trust signal source on a High-weight measure** → `/vibe-check <id>` ("[name] is the signal source on M### (High weight) and at Low trust. Trust Log shows [pattern]. Prep extra evidence before next review."). Trust does not affect Momentum directly — this is a parallel career-progression risk.
+6. **Missed-commitments pattern** (2+ you→them `missed commitment` or `dropped thread` events on anyone in last 60 days) → `/vibe-check <id>` ("[N] missed commitments logged with [name] in 60 days. Worth reviewing the Trust Log before your next interaction.").
+7. **Company Context > 90 days stale** → `/log-company-goals` ("your Company Context was last refreshed [date] — if OKRs rolled over, Priority Weights are off").
+8. **Pending `non-quant-reason` artifacts with a `follow up by` date in the past** → `/log-artifact --improve A###` for each, with the specific follow-up measurement to attach.
+9. **Over-assessed measures from last `/review-measures`** → `/review-measures` to address.
+10. **No Performance Measures Tracker yet** → `/ingest-leveling <path>` ("you haven't ingested your leveling doc yet").
+11. **No artifact in last 30 days** → `/log-artifact` ("you haven't logged work in a month — let's capture what shipped").
+12. **New Meeting Log entry needed** (last Meeting Log row is > 2 weeks ago) → `/log-1-1` ("worth capturing anything from recent 1:1s") — if there's an upcoming scheduled 1:1, suggest `/prep-1-1` instead.
+13. Otherwise → prompt the user: "Nothing urgent flagging. What's on your mind?"
 
 ### Step 4 — Timeline-aware adjustments
 

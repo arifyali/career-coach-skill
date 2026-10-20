@@ -33,8 +33,9 @@ Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM
 | Portability | `/export-artifacts` | Starting interview prep |
 | Portability | `/export-state` | Backing up or moving machines |
 | Portability | `/import-state <path>` | Restoring state on a new machine |
+| Relationships | `/people [name] [--stale] [--role <Type>] [--trust-flags]` | Look up manager + stakeholder IDs; find who's gone cold or low-trust |
+| Relationships | `/vibe-check [id-or-name]` | Trust tracking — roster scan or deep view + log for one person |
 | Session | `/status` | Session start (auto); or explicitly for a trajectory read |
-| Session | `/people [name] [--stale] [--role <Type>]` | Look up manager + stakeholder IDs; find who's gone cold |
 | Session | `/help` | Reminder of this list in-session |
 
 ## Quick start
@@ -150,6 +151,7 @@ Supported role profiles: `data-scientist`, `analytics-engineer`, `bi-engineer`, 
 
 - **Evidence over narrative.** Every maturity call, Momentum Score, and Trajectory Call cites artifact IDs, feedback dates, or Meeting Log rows. If evidence is weak, the skill says so.
 - **Friction where it matters.** The quantified-Y guardrail on artifacts, the explicit confirmation on state overwrites, the user-confirmed updates on Manager Background — these are the parts that prevent a library of plausible-sounding nothing.
+- **Trust is separate from performance.** `/vibe-check` tracks signal reliability (them → you) and your follow-through (you → them) per person. It surfaces career-progression risks (low-trust Reviewer, missed-commitment patterns) but does **not** affect Momentum Score. Relationship signal and performance signal stay in different lanes, both visible.
 - **Simple scoring, visible math.** The Momentum formula is a short weighted average. The response shows every input. You can dispute specific maturity calls, not an opaque score.
 - **One source of truth per concept.** XYZ artifacts live here. STAR enrichment lives in `interview-coach-skill`. Performance measures live here. Interview stories live there. The handoff is one-way and file-based.
 - **State is yours.** Nothing phones home. Everything persists to a single gitignored file you own.

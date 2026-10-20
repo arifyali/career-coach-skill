@@ -49,10 +49,14 @@ local. Full field definitions live in references/coaching-state-schema.md.
 - Open gaps / unknowns:
 - Last enriched:
 - Confidence:
+- Trust (them→you):
+- Trust (you→them):
+
+### Manager Trust Log
 
 ## Stakeholder Backgrounds
-| ID | Name | Role | Team | Relationship Type | Priorities | Last Interaction | Relationship Last Reviewed | Open Gaps |
-|----|------|------|------|-------------------|------------|------------------|----------------------------|-----------|
+| ID | Name | Role | Team | Relationship Type | Priorities | Last Interaction | Relationship Last Reviewed | Trust (them→you) | Trust (you→them) | Open Gaps |
+|----|------|------|------|-------------------|------------|------------------|----------------------------|------------------|------------------|-----------|
 
 ### Stakeholder Details
 

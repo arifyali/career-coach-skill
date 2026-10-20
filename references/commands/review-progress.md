@@ -60,7 +60,20 @@ Consider the Short-term Career Goal's `Target review window` — the thresholds 
 
 Compose a 1-2 line note summarizing what moved since the last snapshot. Call out any major shifts: a measure jumping from Not Yet Demonstrated to Emerging, a feedback floor activating, a Momentum delta of ±10 or more.
 
-### Step 7 — Write
+### Step 7 — Trust Status read
+
+Read Manager Background + Stakeholder Backgrounds. Compute:
+
+- Distribution of Trust (them→you): count of High / Med / Low.
+- Distribution of Trust (you→them): count of High / Med / Low.
+- Red flags (one line each, listed in output):
+  - Low-trust signal source on a High-Priority-Weight measure (person is the source on 2+ Feedback Stream rows linked to a High-weight measure M### AND their them→you is Low).
+  - Any Low them→you combined with that person being `MGR` or `Reviewer` relationship type — career-progression risk going into a review window.
+  - 2+ you→them Low on anyone with upcoming review-cycle involvement.
+
+**Important**: Trust does **not** affect Momentum Score or Trajectory Call per `references/vibe-check-rubric.md` and `references/rubric-performance.md`. The read is a parallel signal, surfaced in the output but not folded into the math.
+
+### Step 8 — Write
 
 - Append a new Progress Snapshot row with: date, snapshot note, Measures Meeting+ count, Measures Below Target count, Momentum Score, Trajectory Call.
 - Confirm all Trend column updates in Performance Measures Tracker (silent — don't ask per-measure, this is bulk).
@@ -95,6 +108,13 @@ Review window: [date] → [date]
 [one-line per measure showing weight * (maturity + trend adjustment)]
 Weighted sum / weight sum = Momentum
 Feedback floor: [active / not active]
+
+### Trust Status
+- Them→you: [N] High, [N] Med, [N] Low
+- You→them: [N] High, [N] Med, [N] Low
+- Red flags: [specific people + reason, or "none"]
+
+_Trust is a parallel signal — it does not affect Momentum. See `/vibe-check` for detail._
 
 ### Coaching Read
 **What I Heard**: [paraphrase]

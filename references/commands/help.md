@@ -33,9 +33,12 @@ Show the user the available commands with one-line descriptions. Keep it compact
 - `/export-state` — Bundle state for backup or machine move
 - `/import-state <path>` — Restore from a bundle
 
+### Relationships
+- `/people [name-substring] [--stale] [--role <Type>] [--trust-flags]` — Look up manager + stakeholder IDs (read-only; includes Trust columns)
+- `/vibe-check [id-or-name]` — Trust tracking: roster scan or deep view + log flow for one person
+
 ### Session
 - `/status` — Prescriptive session-start summary
-- `/people [name-substring] [--stale] [--role <Type>]` — Look up manager + stakeholder IDs (read-only)
 - `/help` — This list
 
 See README.md for the setup walkthrough and portability instructions.

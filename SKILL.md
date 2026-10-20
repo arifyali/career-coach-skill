@@ -106,7 +106,8 @@ Execute commands immediately when detected. Before executing, **read the referen
 | `/export-state` | Bundle state for backup / machine move |
 | `/import-state <path>` | Restore state from a bundle |
 | `/status` | Prescriptive session-start summary |
-| `/people [name] [--stale] [--role <Type>]` | Look up manager + stakeholder IDs (read-only) |
+| `/people [name] [--stale] [--role <Type>] [--trust-flags]` | Look up manager + stakeholder IDs (read-only; includes Trust columns) |
+| `/vibe-check [id-or-name]` | Trust tracking: roster scan or deep view + log flow for one person |
 | `/help` | Command list |
 
 ### File Routing
@@ -120,7 +121,9 @@ When executing a command, read the required reference files first:
 - **`/ingest-leveling`**: Also read `references/role-profiles.md` (for seed measures fallback) and `references/rubric-performance.md` (for Priority Weight computation).
 - **`/prep-1-1`, `/prep-stakeholder`**: Also read `references/meeting-prep-guide.md` (shared prep flow — FK resolution, Participant Profile Snapshots, agenda / anticipated-questions / questions-to-ask drafting rules), `references/stakeholder-relationship-types.md` (for how Relationship Type steers each section), and `references/pdf-ingestion.md` (if an artifact path is supplied — PDF Read protocol).
 - **`/log-artifact`**: Also read `references/xyz-artifact-guide.md` and `references/role-profiles.md` (for competency tag defaults).
-- **`/log-1-1`, `/log-stakeholder-meeting`, `/log-feedback`**: Also read `references/state-update-triggers.md` for cross-section write rules. For prep-aware debriefs, also read `references/meeting-prep-guide.md` (snapshot matching) and `references/stakeholder-relationship-types.md` (per-participant drift checks).
+- **`/log-1-1`, `/log-stakeholder-meeting`, `/log-feedback`**: Also read `references/state-update-triggers.md` for cross-section write rules. For prep-aware debriefs, also read `references/meeting-prep-guide.md` (snapshot matching) and `references/stakeholder-relationship-types.md` (per-participant drift checks). These commands do **not** prompt for trust signals — trust capture is opt-in via `/vibe-check` only.
+- **`/vibe-check`**: Also read `references/vibe-check-rubric.md` (scoring heuristic + decay rule + non-moralizing stance) and `references/meeting-prep-guide.md` (FK resolution pattern).
+- **`/status`, `/review-progress`, `/people`**: Also read `references/vibe-check-rubric.md` for trust flag definitions and the non-interaction-with-Momentum rule.
 - **`/log-company-goals`**: Also read `references/rubric-performance.md` for Priority Weight recomputation.
 - **`/review-measures`**: Also read `references/rubric-performance.md` and `references/evidence-sourcing.md`.
 - **`/review-progress`**: Also read `references/rubric-performance.md` and `references/evidence-sourcing.md`.
