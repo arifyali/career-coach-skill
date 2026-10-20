@@ -83,6 +83,7 @@ The user then runs `/stories improve S###` to upgrade the draft to a 4+ intervie
 - Meeting Log and Feedback Stream rows — operational notes, not resume material.
 - Company Context — relevant for performance tracking, not for interviews outside the current company.
 - Trust state — `Trust (them→you)` / `Trust (you→them)` columns on Stakeholder Backgrounds, the parallel fields on Manager Background, Trust Log sub-sections on each Stakeholder Details block, and the Manager Trust Log section. These are the user's private relationship signal captured via `/vibe-check` and must never leave `coaching_state.md`.
+- Commitments — the full Commitments table + Commitment Details sub-sections. Operational signal; a completed commitment that is resume material becomes an Artifact via `/log-artifact` (which has a Y rule and goes through the export pipeline). The Commitments table itself (statuses, blockers, cancellation reasons, cross-references) stays local.
 - Low-confidence artifacts, by default (users can override with `/export-artifacts include-low-confidence`). Rationale: a bad artifact becomes a bad story.
 
 ## Mentee deployment

@@ -22,10 +22,16 @@ When no explicit command is given, detect the user's intent and route. Use first
 18. "I don't trust [name]" / "[name]'s feedback is vague" / "[name] shifted the goalposts again" / "I missed a commitment to [name]" → `/vibe-check <id>` (resolve name to FK; prompt to log the trust-affecting event per the direction and type cued)
 19. "How am I doing with [name]" / "What's the vibe with my manager" / "Trust check on [name]" → `/vibe-check <id>` (deep view)
 20. "Vibe check" / "Trust status" / "How are my relationships trending" → `/vibe-check` (roster mode)
-21. "Back up state" / "Moving machines" / "Need to export my state" → `/export-state`
-22. Session start with existing `coaching_state.md` → `/status`
-23. Session start with no `coaching_state.md` → suggest `/kickoff`
-24. Otherwise → ask whether to run `/status`, `/kickoff`, or `/help`
+21. "I promised [X]" / "I told [name] I'd [X]" / "committed to [name] on [X]" (single sentence) → `/commitment add` with pre-filled values (Owner=me; Owed to resolved from the name mentioned; Commitment pre-filled from the sentence)
+22. "Here's my weekly recap: ..." / "Multi-sentence paragraph of commitments / feedback / updates" → `/commitment --from-paste`
+23. "Did I close out [X]" / "What's the status of my commitment to [name]" → `/commitment --to <id>` or `/commitment <C###>` if the ID is referenced
+24. "What do I owe people" / "My commitments" / "My open follow-ups" → `/commitment` (list mode)
+25. "I missed the deadline on [X]" / "I need to renegotiate [X]" / "The [commitment] is blocked" → `/commitment <C###> <cancel/renegotiate/block>`
+26. "I just shipped [X]" where [X] matches an Open commitment → `/commitment <C###> complete` (with the shipped artifact as completion evidence)
+27. "Back up state" / "Moving machines" / "Need to export my state" → `/export-state`
+28. Session start with existing `coaching_state.md` → `/status`
+29. Session start with no `coaching_state.md` → suggest `/kickoff`
+30. Otherwise → ask whether to run `/status`, `/kickoff`, or `/help`
 
 ## Prep vs. debrief disambiguation
 

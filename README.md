@@ -27,6 +27,7 @@ Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM
 | Capture | `/log-1-1` | After a 1:1 (auto-debriefs against matching prep) |
 | Capture | `/log-stakeholder-meeting <id-or-name>` | After a stakeholder meeting (prep-aware) |
 | Capture | `/log-feedback` | Standalone feedback (Slack, email, review doc) |
+| Capture | `/commitment [add\|<C###>\|--from-paste\|--mine\|--waiting\|--to\|--overdue]` | Track accepted commitments; auto-proposes Trust Log entries on status flips |
 | Review | `/review-measures` | Monthly, or when evidence feels thin on a measure |
 | Review | `/review-progress` | Monthly; definitely before any formal review cycle |
 | Review | `/log-company-goals` | New quarter, OKR refresh, team priority shift |
@@ -152,6 +153,7 @@ Supported role profiles: `data-scientist`, `analytics-engineer`, `bi-engineer`, 
 - **Evidence over narrative.** Every maturity call, Momentum Score, and Trajectory Call cites artifact IDs, feedback dates, or Meeting Log rows. If evidence is weak, the skill says so.
 - **Friction where it matters.** The quantified-Y guardrail on artifacts, the explicit confirmation on state overwrites, the user-confirmed updates on Manager Background — these are the parts that prevent a library of plausible-sounding nothing.
 - **Trust is separate from performance.** `/vibe-check` tracks signal reliability (them → you) and your follow-through (you → them) per person. It surfaces career-progression risks (low-trust Reviewer, missed-commitment patterns) but does **not** affect Momentum Score. Relationship signal and performance signal stay in different lanes, both visible.
+- **Commitments are the concrete practice behind the relationship goal.** `/commitment` captures accepted promises with a Status lifecycle (Open → Blocked → Completed / Renegotiated / Cancelled). Status flips to Completed or Missed auto-propose Trust Log entries on the Owed-to person, with confirmation. Only commitments the user explicitly accepted land in the table — suggestions don't become promises until the user says so.
 - **Simple scoring, visible math.** The Momentum formula is a short weighted average. The response shows every input. You can dispute specific maturity calls, not an opaque score.
 - **One source of truth per concept.** XYZ artifacts live here. STAR enrichment lives in `interview-coach-skill`. Performance measures live here. Interview stories live there. The handoff is one-way and file-based.
 - **State is yours.** Nothing phones home. Everything persists to a single gitignored file you own.

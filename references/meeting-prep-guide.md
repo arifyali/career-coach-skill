@@ -57,6 +57,7 @@ Pull in (in addition to the snapshots):
 - **High-Priority-Weight measures with Weak evidence** — always relevant.
 - **If `MGR` or `SKIP` is in the roster**: pending Feedback Stream entries not yet linked to a Meeting Log row, Coaching Notes relevant to the manager.
 - **For each `K###` in the roster**: Feedback Stream entries from them in the last 90 days, Artifact Library items tagged against measures they care about.
+- **Outstanding Commitments involving the roster** — pull from the Commitments table where (Owner = me AND Owed to is a participant in the roster) OR (Owner is a participant in the roster AND Owed to = me). Both directions matter: commitments the user owes a participant become status-check agenda items; commitments a participant owes the user become probes to raise. Capture Status, Due, and `C###` for each.
 - **Cross-participant signals** (multi-participant only): measures where two or more participants in the roster are signal sources. These typically surface as "both will care" agenda items.
 
 ## Agenda drafting
@@ -84,6 +85,21 @@ Order by that participant's Relationship Type per the table in `references/stake
 
 Agenda should fit the meeting duration. If the user didn't give a duration, assume 30 minutes for 1:1s and 45 minutes for group meetings; prompt if items don't fit.
 
+### Commitments review sub-section
+
+If any Outstanding Commitments involve the roster (from the state inputs above), add a **Commitments review** sub-section inside the agenda. One line per commitment:
+
+```
+C### [status] [due] — [commitment one-line] (owner: me / name)
+```
+
+Positioning by Relationship Type:
+- If the Owed-to participant is a `Reviewer`, `Senior Partner`, or `MGR`: lead the agenda with their commitment reviews — these conversations tend to be status-first.
+- If the Owed-to participant is a `Partner`, `Peer`, or `Customer`: interleave with other agenda items, grouping by participant where sensible.
+- Commitments the user is Owner-waiting-on (someone else owes the user) go in the agenda as "status probes" with a tactical note: "I'll ask them where this stands."
+
+Separate the Commitments review visually from the main agenda so the user can see at a glance what's a prior-commitment-status-check vs. new business.
+
 ## Anticipated questions
 
 One subsection per participant. For each question, add 1-2 bullet prep notes (what to say + which artifact IDs or measures to cite).
@@ -102,6 +118,7 @@ Generate questions by crossing:
 - The participant's known Priorities
 - Content from the artifact (if one was supplied)
 - Any pending Feedback Stream entries from this participant
+- **Any Open Commitments where this participant is Owed-to**: add an anticipated question of shape "they will likely ask about the status of [C### commitment one-line]" with prep notes citing where things stand.
 
 If the artifact exists, every anticipated question should either reference the artifact or be a question *about* the artifact's content.
 
@@ -122,6 +139,7 @@ Prioritize:
 2. Priority probes if Company Context has shifted since the last interaction ("are quarter OKRs still shaping your team's work the same way?").
 3. Relationship probes if the Last Interaction was > 60 days ago (does Relationship Type still fit?).
 4. For `MGR` specifically: feedback probes on items the user has worked on since the last 1:1 — proactive asks are high-signal.
+5. **Open Commitments where this participant is Owner** (something they owe the user): add a question of shape "where does [commitment one-line] stand" referencing the C### and the agreed Due. Keep it specific; vague "any update on anything" is noise.
 
 ## Copy-paste calendar block
 

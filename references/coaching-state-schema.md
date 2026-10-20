@@ -143,7 +143,25 @@ _(filled in at debrief)_
 ## Feedback Stream
 | Date | Source | Channel | Verbatim/Paraphrase | Sentiment | Linked Measure | Linked Artifact | Action Taken |
 |------|--------|---------|---------------------|-----------|----------------|-----------------|--------------|
-[rows — Source: FK-attributed when possible (`MGR — [name]` or `K### — [name]`) or free-text label (`peer: alex` / `recruiter` / `review doc` / `all-hands` / `unknown`). Attribution flow lives in `references/commands/log-feedback.md`. Channel: 1:1 / Slack / email / review / all-hands. Sentiment: Positive / Mixed / Critical.]
+[rows — Source: FK-attributed when possible (`MGR — [name]` or `K### — [name]`) or free-text label (`peer: alex` / `recruiter` / `review doc` / `all-hands` / `unknown`). Attribution flow lives in `references/commands/log-feedback.md`. Channel: 1:1 / Slack / email / review / all-hands. Sentiment: Positive / Mixed / Critical. Action Taken column may include `C###` references to Commitments if `/commitment` was used to formalize an action out of this feedback.]
+
+## Commitments
+| ID | Commitment | Owner | Owed to | Due | Status | Source | Linked Measures | Last Updated |
+|----|------------|-------|---------|-----|--------|--------|-----------------|---------------|
+[rows — ID: `C###`. Owner: `me` or FK (`MGR` / `K###`). Owed to: FK or free-text label (`team`, `review committee`, `self`). Due: ISO date or `not agreed`. Status: Open / Blocked / Completed / Renegotiated / Cancelled — lifecycle rules in `references/commitment-schema.md`. Source: `MTG###` / Meeting Log date / Feedback Stream date+source / `standalone`. Captured only after an explicit acceptance confirmation; see `references/commands/commitment.md`.]
+
+### Commitment Details
+#### C001 — [commitment one-line]
+- Description: [longer form if needed]
+- Status history:
+  - [date] (new) → Open — [reason / source]
+  - [date] Open → [new state] — [reason / terms / evidence]
+- Blocker: [filled on Status: Blocked]
+- Completion evidence: [`A###` or short note; filled on Status: Completed]
+- Renegotiation terms: [filled on Status: Renegotiated]
+- Cancellation reason: [filled on Status: Cancelled; one of `missed` / `superseded` / `scope-changed` / `other: <text>`]
+
+[repeat Details block per commitment]
 
 ## Session Log
 ### Historical Summary (when log exceeds 15 rows, summarize older entries here)

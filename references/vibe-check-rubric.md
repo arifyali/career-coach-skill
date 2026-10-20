@@ -107,14 +107,16 @@ Default event types the command flow offers at the "what happened" step:
 
 User can always override the default impact and the event type can always be free text.
 
+**Commitment coupling**: `kept commitment`, `missed commitment`, `renegotiated commitment`, and `dropped thread` events can be auto-proposed by `/commitment` status flips — see `references/commitment-schema.md`. In that flow, the Trust Log entry references the `C###` and the user confirms yes/no before the write. The event-type menu above is still used when the user runs `/vibe-check` directly without an underlying commitment record (e.g., logging a verbal promise that was never structured as a Commitment).
+
 ## Interpretation lines
 
 After an event is logged (or at `/vibe-check <id>` deep view), the command surfaces a one-line interpretation. Format: pattern + tactical implication.
 
 Examples:
 - "K004 them→you at Low after two goalpost shifts in 30 days. Document any new asks in writing; cite the written record if the goalposts shift again."
-- "MGR you→them at Low after two missed commitments in 60 days. The miss on the Q3 doc review is the one to repair first — raise it unprompted at the next 1:1."
+- "MGR you→them at Low after missing C004 (Q3 doc review, due 2026-09-15) and C007 (migration plan, due 2026-10-05). The miss on C004 is the one to repair first — raise it unprompted at the next 1:1."
 - "K001 them→you at High across 4 months with specific feedback consistently. Treat their input as high-signal; weight it more than K004's on overlapping measures."
 - "K007 both directions decayed from High to Medium — no interaction in 94 days. Not broken; just cold. Worth a sync if they're a signal source on anything active."
 
-Interpretation is always paired with a concrete tactical next action, never with generic advice.
+Interpretation is always paired with a concrete tactical next action, never with generic advice. When recent Trust Log events reference specific `C###` IDs (from the commitment coupling), cite them in the interpretation — grounds the pattern in records the user can trace rather than vague "missed commitments."

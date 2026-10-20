@@ -88,6 +88,12 @@ local. Full field definitions live in references/coaching-state-schema.md.
 | Date | Source | Channel | Verbatim/Paraphrase | Sentiment | Linked Measure | Linked Artifact | Action Taken |
 |------|--------|---------|---------------------|-----------|----------------|-----------------|--------------|
 
+## Commitments
+| ID | Commitment | Owner | Owed to | Due | Status | Source | Linked Measures | Last Updated |
+|----|------------|-------|---------|-----|--------|--------|-----------------|---------------|
+
+### Commitment Details
+
 ## Session Log
 ### Recent Sessions
 | Date | Commands Run | Key Outcomes |

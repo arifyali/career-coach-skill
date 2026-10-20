@@ -103,9 +103,21 @@ For each present participant with a snapshot in the prep (debrief-against-prep f
 
 Accepted updates write to Stakeholder Backgrounds (or Manager Background for `MGR` / `SKIP`). Record the Relationship Drift Flag in the Meeting Preps Details block for audit — flags persist even after Priorities are updated, so the user can see historical shifts.
 
+### Step 11b — Commitment extraction hook
+
+After Follow-ups are captured per participant, prompt:
+
+> "Any of these follow-ups are formal commitments you accepted? I can structure them in Commitments so `/vibe-check`, meeting prep, and `/status` can track them."
+
+For each listed follow-up, present a proposed Commitment with pre-filled values (Owner=me, Owed to resolved from the meeting participant tied to the follow-up, Due inferred if the follow-up mentions a timeframe else `not agreed`, Source auto-set to today's Meeting Log row). User walks each: `accept` / `edit` / `reject`. Accepted candidates run through the acceptance confirmation step in `references/commands/commitment.md` (Add mode Step 7) and write `C###`.
+
+Cross-reference: append each written `C###` to the Meeting Log row's `Follow-ups` column.
+
+The hook is additive — declining all behaves identically to pre-Commitments. See `references/commitment-schema.md` for the "accepted only" rule.
+
 ### Step 12 — Write
 
-- **Meeting Log row** (fka 1:1 Log): Date, Participants (comma-separated names of attendees), Type (`1-1` or `group`), Topics, Explicit Feedback (summary across participants, one row per participant with distinct feedback), Implicit Signals, Follow-ups, Linked Measures.
+- **Meeting Log row** (fka 1:1 Log): Date, Participants (comma-separated names of attendees), Type (`1-1` or `group`), Topics, Explicit Feedback (summary across participants, one row per participant with distinct feedback), Implicit Signals, Follow-ups (freeform text + any promoted `C###` IDs appended), Linked Measures.
 - **Feedback Stream rows**: one per participant per explicit feedback captured. Dedup against existing on Date+Source+Verbatim.
 - **Stakeholder Backgrounds updates**: for each present `K###` with accepted drift updates — Priorities, Open Gaps, Last Interaction = today, Relationship Last Reviewed = today.
 - **Manager Background updates**: if `MGR` in the room, apply the same drift-check updates to Manager Background. Ask before overwriting.

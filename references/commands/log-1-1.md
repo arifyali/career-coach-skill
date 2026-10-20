@@ -91,9 +91,21 @@ Walk the v1 sequence:
 
 Proceed to Step 11.
 
+### Step 10b — Commitment extraction hook
+
+After Follow-ups are captured, prompt:
+
+> "Any of these follow-ups are formal commitments you accepted? I can structure them in Commitments so `/vibe-check`, meeting prep, and `/status` can track them."
+
+For each listed follow-up, present a proposed Commitment with pre-filled values (Owner=me, Owed to resolved from the meeting participant most tied to the follow-up, Due inferred if the follow-up mentions a timeframe else `not agreed`, Source auto-set to today's Meeting Log row). User walks each: `accept` / `edit` / `reject`. Accepted candidates run through the acceptance confirmation step in `references/commands/commitment.md` (Add mode Step 7) and write `C###`.
+
+Cross-reference: append each written `C###` to the Meeting Log row's `Follow-ups` column (the original follow-up text stays in place).
+
+If the user declines all, behavior is identical to pre-Commitments: Meeting Log row written with freeform Follow-ups column, no Commitments rows created. The hook is additive. See `references/commitment-schema.md` for the "accepted only" rule.
+
 ### Step 11 — Write
 
-- **Meeting Log row** (fka 1:1 Log): Date, Type (`1-1` or `group`), Participants (comma-separated attendee names), Topics, Explicit Feedback (per-participant where distinct), Implicit Signals, Follow-ups, Linked Measures, Linked Prep (`MTG###` or empty).
+- **Meeting Log row** (fka 1:1 Log): Date, Type (`1-1` or `group`), Participants (comma-separated attendee names), Topics, Explicit Feedback (per-participant where distinct), Implicit Signals, Follow-ups (freeform text + any promoted `C###` IDs appended), Linked Measures, Linked Prep (`MTG###` or empty).
 - **Feedback Stream rows**: one per participant per explicit feedback. Dedup on Date+Source+Verbatim.
 - **Manager Background updates**: if `MGR` in the room and user accepted drift updates — Priorities, Open Gaps, Working-Style Signals; Last 1:1 Date = today.
 - **Stakeholder Backgrounds updates**: for each `K###` in the room with accepted drift updates — Priorities, Open Gaps, Last Interaction = today, Relationship Last Reviewed = today (if drift fired).

@@ -22,6 +22,7 @@ Show the user the available commands with one-line descriptions. Keep it compact
 - `/log-1-1` — Capture a 1:1 (prep-aware: debriefs against a matching Meeting Prep if one exists)
 - `/log-stakeholder-meeting <id-or-name>` — Debrief a stakeholder meeting (prep-aware)
 - `/log-feedback` — Log standalone feedback from stakeholders / peers / review docs
+- `/commitment [add|<C###>|--from-paste|--mine|--waiting|--to|--overdue|--status]` — Track accepted commitments (Open → Blocked → Completed / Renegotiated / Cancelled); auto-proposes Trust Log entries on status flips
 
 ### Review
 - `/review-measures` — Walk each measure, surface evidence coverage, update maturity calls

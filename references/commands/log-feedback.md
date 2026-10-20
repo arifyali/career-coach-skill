@@ -50,6 +50,18 @@ Show Performance Measures Tracker as a numbered menu. "Which measure does this f
 
 "Any action you've taken or plan to take in response? Keep it short — a line or two."
 
+### Step 7b — Commitment extraction hook
+
+If the Action Taken contains an actionable commitment the user accepted (not just an observation), prompt:
+
+> "This Action Taken sounds like an accepted commitment. Want me to structure it in Commitments so `/vibe-check` and meeting prep can track it?"
+
+If yes, present a proposed Commitment with pre-filled values (Owner=me, Owed to pre-filled from the Feedback Stream row's Source if that resolved to a FK, Due inferred if timeframe mentioned else `not agreed`, Source auto-set to this Feedback Stream row's Date + Source). Run through the acceptance confirmation step in `references/commands/commitment.md` (Add mode Step 7). On write, append `C###` to the Feedback Stream row's `Action Taken` column alongside the original text.
+
+If the Source of the feedback is a free-text label (not an FK), the Commitment's Owed to defaults to that same label. See `references/commitment-schema.md` for Trust Log coupling rules (skipped when Owed to is a free-text label).
+
+The hook is additive — declining behaves identically to pre-Commitments.
+
 ### Step 8 — Write
 
 - Append Feedback Stream row (Date, Source, Channel, Verbatim/Paraphrase, Sentiment, Linked Measure, Linked Artifact, Action Taken).
