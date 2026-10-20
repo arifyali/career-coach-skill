@@ -16,9 +16,37 @@ Opt-in by design. `/log-feedback`, `/log-1-1`, and `/log-stakeholder-meeting` do
 ### Flow
 
 1. Read Manager Background + Stakeholder Backgrounds from state.
-2. Apply decay rule from `references/vibe-check-rubric.md` to each row where Last Interaction (or Last enriched for MGR) > 90 days ago. For each decay event: record a Trust Log entry; move trust toward Medium.
-3. Compute per-row flags (see below).
-4. Render the table + any prescriptive nudges.
+2. **Empty-state check** (see rules below). If the state is empty or partially empty, emit the appropriate empty-state response and exit — do **not** proceed to decay/flags/table render for sections that have no rows.
+3. Apply decay rule from `references/vibe-check-rubric.md` to each row where Last Interaction (or Last enriched for MGR) > 90 days ago. For each decay event: record a Trust Log entry; move trust toward Medium.
+4. Compute per-row flags (see below).
+5. Render the table + any prescriptive nudges.
+
+### Empty-state rules
+
+Treat Manager Background as **"not on file"** when its `Name` field is empty. Treat Stakeholder Backgrounds as **"empty"** when the table has zero rows.
+
+| Manager | Stakeholders | Behavior |
+|---|---|---|
+| Not on file | Empty | **Full empty state.** Do not render the roster table. Emit the empty-state response below. Priority Move: `/ingest-manager <linkedin.pdf>`. |
+| Not on file | ≥1 row | Render the stakeholder rows only (no MGR row). Add nudge: "Manager Background not on file. `/ingest-manager <linkedin.pdf>` adds the FK the rest of the skill resolves against; `/vibe-check MGR` becomes meaningful after that." |
+| On file | Empty | Render the MGR row only. Add nudge: "No stakeholders on file yet. `/ingest-stakeholder <linkedin.pdf>` to add one; `/vibe-check` roster mode fills out as you add rows." |
+| On file | ≥1 row | Proceed to Step 3 (decay + flags + full render) normally. |
+
+### Empty-state response (full empty case)
+
+Do not render an empty table. Emit:
+
+```markdown
+## Vibe Check — Roster — [date]
+
+Nothing to score — Manager Background has no name (not ingested) and the Stakeholder Backgrounds table is empty.
+
+**Priority Move**: `/ingest-manager <path-to-manager-linkedin.pdf>` — once Manager Background has a Name, `/vibe-check MGR` becomes meaningful (starts at Medium / Medium, no Trust Log entries, interpretation line "no interactions yet — vibe TBD").
+
+**Next Step**: `/ingest-stakeholder <linkedin.pdf>` for each key stakeholder as you meet them. Then re-run `/vibe-check` to see the full roster.
+```
+
+Session Log row still fires: `vibe-check | roster, empty state`.
 
 ### Flag rules
 
