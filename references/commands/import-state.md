@@ -14,8 +14,8 @@ Reverse of `/export-state`. Overwrites `coaching_state.md` with the bundle conte
 
 Show a one-screen diff summary:
 
-- Current state (if any): "N artifacts, M measures, K 1:1 Log rows, last session [date]."
-- Bundle state: "N' artifacts, M' measures, K' 1:1 Log rows, last session [date]."
+- Current state (if any): "N artifacts, M measures, K Meeting Log rows, last session [date]."
+- Bundle state: "N' artifacts, M' measures, K' Meeting Log rows, last session [date]."
 - Call out losses: "Importing will overwrite your current state. [X difference] will be lost unless you also run `/export-state` first."
 
 ### Step 3 — Confirm

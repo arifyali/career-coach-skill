@@ -116,7 +116,7 @@ Write a Session Log row: `kickoff | Profile + Career Goals + Company Context ini
 Users re-run `/kickoff` after a role change, promotion, or team move. Don't restart from scratch.
 
 1. Ask: "What's changed? Role, level, company, team, manager, or something else?"
-2. Show what carries over: "Your Artifact Library and 1:1 Log stay. Performance Measures Tracker: ask whether to deprecate current rows (if the role or leveling doc changed) or keep them (if just a team move)."
+2. Show what carries over: "Your Artifact Library and Meeting Log stay. Performance Measures Tracker: ask whether to deprecate current rows (if the role or leveling doc changed) or keep them (if just a team move)."
 3. Update `Profile` fields. Preserve old values as a Coaching Note: "[date]: Previous role: [X] at [company]; current level [Y]; biggest concern [Z]."
 4. Re-run Steps 4-5 (Company Context and Role-to-priority mapping) if the move was to a different team/company.
 5. Flag downstream work:

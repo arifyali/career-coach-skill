@@ -80,7 +80,7 @@ The user then runs `/stories improve S###` to upgrade the draft to a 4+ intervie
 ## What NOT to export
 
 - Manager / stakeholder names and background details — none of this is in XYZ format and none of it belongs in Storybank entries.
-- 1:1 Log and Feedback Stream rows — operational notes, not resume material.
+- Meeting Log and Feedback Stream rows — operational notes, not resume material.
 - Company Context — relevant for performance tracking, not for interviews outside the current company.
 - Low-confidence artifacts, by default (users can override with `/export-artifacts include-low-confidence`). Rationale: a bad artifact becomes a bad story.
 

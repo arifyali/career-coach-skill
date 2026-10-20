@@ -49,9 +49,9 @@ Last updated: [date]
 - Confidence: [High (confirmed in 1:1) / Medium (inferred from PDF) / Low (user memory only)]
 
 ## Stakeholder Backgrounds
-| ID | Name | Role | Team | Relationship Type | Priorities | Last Interaction | Open Gaps |
-|----|------|------|------|-------------------|------------|------------------|-----------|
-[rows — Relationship Type: collaborator / customer / blocker / peer / sponsor]
+| ID | Name | Role | Team | Relationship Type | Priorities | Last Interaction | Relationship Last Reviewed | Open Gaps |
+|----|------|------|------|-------------------|------------|------------------|----------------------------|-----------|
+[rows — Relationship Type uses the canonical enum defined in `references/stakeholder-relationship-types.md`: Partner / Senior Partner / Upstream / Downstream / Customer / Reviewer / Peer. Multiple types allowed, comma-separated. Relationship Last Reviewed bumps on any debrief that triggers a drift flag.]
 
 ### Stakeholder Details
 #### K001 — [Name]
@@ -92,10 +92,45 @@ Last updated: [date]
 
 [repeat per artifact]
 
-## 1:1 Log
-| Date | Participant | Topics | Explicit Feedback | Implicit Signals | Follow-ups | Linked Measures |
-|------|-------------|--------|-------------------|------------------|------------|-----------------|
-[rows — Participant: `manager` or stakeholder ID `K###`. Explicit Feedback is also mirrored into Feedback Stream automatically.]
+## Meeting Preps
+| ID | Date | Type | Participant IDs | Participant Names | Purpose | Artifact Path | Linked Measures | Linked Artifacts | Status |
+|----|------|------|-----------------|-------------------|---------|---------------|-----------------|------------------|--------|
+[rows — ID: `MTG###`. Type (derived): `1-1` if one participant, `group` if 2+. Participant IDs: comma-separated hard FKs (`MGR` / `K###` / `SKIP`). Participant Names: parallel display copy. Status: Scheduled / Done / Cancelled. Full field definitions and prep/debrief flows live in `references/meeting-prep-guide.md`.]
+
+### Meeting Preps Details
+#### MTG001 — [date] [meeting label]
+- Purpose:
+- Desired outcome:
+- Roster: [per-participant: ID — Name (Relationship Type for stakeholders)]
+- Artifact: [path or "none"]
+
+##### Snapshots
+[one Participant Profile Snapshot block per participant — see `references/meeting-prep-guide.md`]
+
+##### Agenda
+[bulleted, copy-paste-ready, each item names its primary owner]
+
+##### Anticipated questions (by participant)
+[per-participant subsections]
+
+##### Questions to ask (by participant)
+[per-participant subsections]
+
+##### Debrief notes
+_(filled in by /log-1-1 or /log-stakeholder-meeting)_
+
+##### Relationship Drift Flags
+_(filled in at debrief if any)_
+
+##### Linked Meeting Log row
+_(filled in at debrief)_
+
+[repeat per meeting prep]
+
+## Meeting Log (fka 1:1 Log)
+| Date | Type | Participants | Topics | Explicit Feedback | Implicit Signals | Follow-ups | Linked Measures | Linked Prep |
+|------|------|--------------|--------|-------------------|------------------|------------|-----------------|-------------|
+[rows — Type: `1-1` / `group`. Participants: comma-separated names of attendees (not FKs — this is the human-readable record). Linked Prep: `MTG###` or empty if standalone. Explicit Feedback is also mirrored into Feedback Stream automatically. v1 state files that have a `1:1 Log` section are read as Meeting Log with Type inferred (`1-1`) and Linked Prep empty — see `references/schema-migration.md`.]
 
 ## Feedback Stream
 | Date | Source | Channel | Verbatim/Paraphrase | Sentiment | Linked Measure | Linked Artifact | Action Taken |

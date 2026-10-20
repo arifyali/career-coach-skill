@@ -51,8 +51,8 @@ local. Full field definitions live in references/coaching-state-schema.md.
 - Confidence:
 
 ## Stakeholder Backgrounds
-| ID | Name | Role | Team | Relationship Type | Priorities | Last Interaction | Open Gaps |
-|----|------|------|------|-------------------|------------|------------------|-----------|
+| ID | Name | Role | Team | Relationship Type | Priorities | Last Interaction | Relationship Last Reviewed | Open Gaps |
+|----|------|------|------|-------------------|------------|------------------|----------------------------|-----------|
 
 ### Stakeholder Details
 
@@ -70,9 +70,15 @@ local. Full field definitions live in references/coaching-state-schema.md.
 
 ### Artifact Details
 
-## 1:1 Log
-| Date | Participant | Topics | Explicit Feedback | Implicit Signals | Follow-ups | Linked Measures |
-|------|-------------|--------|-------------------|------------------|------------|-----------------|
+## Meeting Preps
+| ID | Date | Type | Participant IDs | Participant Names | Purpose | Artifact Path | Linked Measures | Linked Artifacts | Status |
+|----|------|------|-----------------|-------------------|---------|---------------|-----------------|------------------|--------|
+
+### Meeting Preps Details
+
+## Meeting Log (fka 1:1 Log)
+| Date | Type | Participants | Topics | Explicit Feedback | Implicit Signals | Follow-ups | Linked Measures | Linked Prep |
+|------|------|--------------|--------|-------------------|------------------|------------|-----------------|-------------|
 
 ## Feedback Stream
 | Date | Source | Channel | Verbatim/Paraphrase | Sentiment | Linked Measure | Linked Artifact | Action Taken |

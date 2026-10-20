@@ -1,81 +1,135 @@
 # log-1-1 — Capture 1:1 notes
 
-Record a 1:1 conversation. Writes to multiple sections: 1:1 Log, Feedback Stream (for explicit feedback), Manager Background (if signals update), and linked measures' `Last Reviewed`.
+Record a 1:1 conversation. Prep-aware: if a Meeting Preps row exists with `Status: Scheduled` and `MGR` in its Participant IDs, offer to debrief against that prep. Otherwise, runs the standalone capture flow (unchanged from v1).
 
-## Guided sequence — one question at a time
+Writes to multiple sections: Meeting Log (fka 1:1 Log), Feedback Stream (for explicit feedback), Manager Background (if signals update), Stakeholder Backgrounds (if other participants were in the room), linked Measures' `Last Reviewed`, and the matched Meeting Preps row (flips `Status: Done`, appends debrief notes + per-participant Relationship Drift Flags).
 
-### Step 1 — When and with whom
+Safe to run on joint-meeting preps where `MGR` is one of several participants — writes per-participant updates for everyone in the room.
 
-- "Date of the 1:1?" (default today)
-- "Participant: manager or a stakeholder?" If stakeholder, ask for the `K###` or name.
+## Flow
 
-### Step 2 — Topics covered
+### Step 1 — Prep-aware opening check
 
-"What did you discuss? Short list — don't retype the whole conversation."
+Query Meeting Preps for rows where:
+- `Status: Scheduled`
+- Participant IDs contains `MGR`
+- Date is within the last 14 days or in the future
 
-Capture as a comma-separated or short bullet list.
+If match(es) found:
+- One match: "Found a prep for your 1:1 roster **[Participant Names]** from **[date]** (MTG###). Debriefing against it? (yes / standalone / discard-prep)"
+- Multiple matches: list numbered with roster + date; ask which (or `none`).
 
-### Step 3 — Explicit feedback
+### Step 2 — Branch
 
-"Did the participant give you any explicit feedback — positive, mixed, or critical? Verbatim or paraphrase is fine."
+- `yes` → debrief-against-prep flow (Step 3+).
+- `standalone` → standalone flow (Step 10). Meeting Preps row stays `Scheduled`.
+- `discard-prep` → mark Meeting Preps row `Status: Cancelled` with reason, then run standalone flow.
+- No match → standalone flow directly.
 
-If yes:
-- Capture the verbatim/paraphrase.
-- Sentiment: Positive / Mixed / Critical.
-- Which measure does it map to? (show Performance Measures Tracker as menu; multiple selections ok; "none" is valid)
-- Which artifact does it refer to? (optional; `A###`)
+### Step 3 — Confirm roster (debrief-against-prep)
 
-This feedback is also written to Feedback Stream automatically — the 1:1 Log and Feedback Stream rows should match on Date + Source + Verbatim to avoid duplicate work later.
+"In the room: **[names from prep roster]**. Correct? (If anyone was absent or added, say so now.)"
 
-### Step 4 — Implicit signals
+- Absent: list of IDs who didn't actually attend. Snapshots stay in prep for the record; no background updates written for them.
+- Added: resolve each via FK rules; snapshot-less, so no drift check for them.
 
-"Any implicit signals — things they said that weren't framed as feedback but changed how you're thinking? Tone shifts, pushback on an assumption, hints about team strategy?"
+### Step 4 — Walk agenda
 
-Capture freeform. These are the coaching gold mine — the stuff that doesn't show up in review docs but shapes behavior.
+For each agenda item in the prep:
+"On **[item]** (owner: [name]): what happened? Covered / skipped / partial? What came out of it?"
 
-### Step 5 — Follow-ups
+Capture one line per item.
 
-"What follow-ups came out of this? Specific commits, deadlines, or threads to pick up."
+### Step 5 — Walk anticipated questions (grouped by participant)
 
-### Step 6 — Manager background update (if participant is manager)
+For each present participant, for each anticipated question in their prep subsection:
+"Did [name] ask [question]? How did it land?"
 
-If the user mentioned anything in Steps 3-4 that would update Manager Background (new priority, new working-style signal, resolved open gap), ask:
+Capture: asked (yes/no), response quality (strong / shaky / didn't come up).
 
-"Does this change what we have on file for your manager? Specifically: [list the Manager Background fields that might update, pre-filled with your inference]. OK to update?"
+### Step 6 — Walk questions-to-ask (grouped by participant)
 
-Never overwrite without asking. Confidence on confirmed fields upgrades to High.
+For each present participant, for each question-to-ask in their prep subsection:
+"Did you raise [question] with [name]? What did you learn?"
 
-### Step 7 — Linked measures
+### Step 7 — Open floor
 
-If any measure IDs were tagged in Step 3 or inferred from the topics, update `Last Reviewed` on those measures to today's date.
+"Anything that came up we didn't prep for? Priority shifts, new asks, relationship signals?"
 
-### Step 8 — Write
+### Step 8 — Per-participant feedback capture
 
-- Append row to 1:1 Log.
-- Append row(s) to Feedback Stream (de-dup against existing rows).
-- Update Manager Background fields if confirmed.
-- Update linked measures' `Last Reviewed`.
-- Append Session Log row: `log-1-1 | [participant], [N] topics, [feedback or no feedback]`.
+For each present participant:
+- **Explicit feedback**: verbatim/paraphrase + Sentiment (Positive / Mixed / Critical) + linked measure(s) (menu from Performance Measures Tracker; multi-select; "none" valid) + linked artifact (optional `A###`).
+- **Implicit signals**: tone shifts, pushback, strategy hints.
+- **Follow-ups**: specific commits, deadlines, threads.
 
-## Coaching commentary (optional)
+Each explicit feedback entry mirrors to Feedback Stream (dedup on Date+Source+Verbatim).
 
-If the 1:1 contained Critical feedback on a High-weighted measure, surface the feedback-floor implication for the next `/review-progress`. Response blueprint: What I Heard → Gaps To Close → Priority Move → Next Step.
+### Step 9 — Per-participant drift check
 
-If a pattern is forming (same feedback 3+ times across 1:1s with no measure movement), name it directly per `coaching-voice.md`.
+For each present participant with a snapshot in the prep, run drift checks per `references/stakeholder-relationship-types.md`:
+
+- **Priorities drift**: snapshot top-3 vs. what the debrief surfaced. If different:
+  > "You expected **[name]** to care most about **[snapshot top priority]**, but the debrief surfaced **[new priority]**. Update their background? (yes/no)"
+- **Relationship Type drift** (stakeholders only): did they operate differently?
+  > "This looked more like a **`Reviewer`** interaction from **[name]** than the **`Partner`** relationship on file. Reclassify? (yes/no)"
+- **Open Gaps**: did any close? Any new ones open?
+
+Accepted updates write to Manager Background (for `MGR` / `SKIP`) or Stakeholder Backgrounds (for `K###`). The Relationship Drift Flag persists in the Meeting Preps Details block for audit even after acceptance.
+
+Then go to Step 11 — Write.
+
+### Step 10 — Standalone flow (no prep match, or user chose standalone)
+
+Walk the v1 sequence:
+1. "Date of the 1:1?" (default today)
+2. "Participant: manager or a stakeholder? (ID or name)" — If multiple participants, list them.
+3. "What did you discuss? Short list."
+4. Per-participant: explicit feedback (verbatim + sentiment + linked measure + linked artifact), implicit signals, follow-ups — same as Step 8.
+5. If participant is `MGR` and signals suggest updates to Manager Background, ask before overwriting (confidence on confirmed fields upgrades to High).
+6. Linked measures: update `Last Reviewed` for any measure referenced.
+
+Proceed to Step 11.
+
+### Step 11 — Write
+
+- **Meeting Log row** (fka 1:1 Log): Date, Type (`1-1` or `group`), Participants (comma-separated attendee names), Topics, Explicit Feedback (per-participant where distinct), Implicit Signals, Follow-ups, Linked Measures, Linked Prep (`MTG###` or empty).
+- **Feedback Stream rows**: one per participant per explicit feedback. Dedup on Date+Source+Verbatim.
+- **Manager Background updates**: if `MGR` in the room and user accepted drift updates — Priorities, Open Gaps, Working-Style Signals; Last 1:1 Date = today.
+- **Stakeholder Backgrounds updates**: for each `K###` in the room with accepted drift updates — Priorities, Open Gaps, Last Interaction = today, Relationship Last Reviewed = today (if drift fired).
+- **Measures**: `Last Reviewed` = today for any referenced measure.
+- **Meeting Preps row** (if matched): flip `Status: Done`, append debrief notes to Details, write per-participant Relationship Drift Flags, link `Meeting Log row ID`.
+- **Session Log**: `log-1-1 | MTG### [prep or standalone], roster: [names], [N] feedback rows, [M] drift flags`.
+
+## Coaching commentary
+
+Follow the standard response blueprint. For 1:1 debriefs specifically:
+- If Critical feedback landed on a High-Priority-Weight measure: surface the feedback-floor implication for the next `/review-progress`.
+- If a pattern is forming (same feedback 3+ times across 1:1s with no measure movement): name it directly per `references/coaching-voice.md`.
+- Multi-participant 1:1: if the stakeholder-side priorities drifted while manager-side didn't, that's often a signal of team-level priority movement — recommend `/log-company-goals`.
 
 ## Output Schema
 
 ```markdown
-## 1:1 Logged — [date] with [participant]
+## Meeting Logged — [date] with [names]
+- Type: [1-1 / group]
+- Prep matched: [MTG### or "standalone"]
 - Topics: [list]
-- Explicit feedback: [verbatim] (sentiment: [X], linked to [M###])
+- Per-participant explicit feedback:
+  - [name]: [verbatim] (sentiment: [X], linked to [M###])
 - Implicit signals: [1-2 lines]
 - Follow-ups: [list]
 
+## Relationship Drift Flags
+- [name]: [one line description]. Updated: yes/no.
+
 ## State Updates
-- Feedback Stream: +1 row
-- Manager Background: [field name] updated to [value] (confidence: High)
+- Meeting Log: +1 row
+- Feedback Stream: +[N] rows
+- Manager Background: [field] updated (confidence: High)
+- Stakeholder Backgrounds: [names] updated (if applicable)
 - Measures `Last Reviewed`: [M###, M###]
+- Meeting Preps MTG###: Status → Done
 
 **Recommended next**: [state-aware next step]. **Alternatives**: [list]
 ```

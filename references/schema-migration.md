@@ -7,8 +7,10 @@ After reading `coaching_state.md` at session start, check whether it contains al
 - **Missing `Career Goals` section**: Add the full section with empty subsections (Short-term, Long-term). Note in Coaching Notes: "[date]: Career Goals section added. Run `/kickoff` goal-only flow or edit directly."
 - **Missing `Company Context` section**: Add the section header with all fields empty. Note in Coaching Notes: "[date]: Company Context section added. Run `/log-company-goals` to populate."
 - **Missing `Progress Snapshots` section**: Add the empty table with the full column set. No note needed — populated by `/review-progress`.
-- **Missing `1:1 Log` or `Feedback Stream`**: Add empty tables with full column sets. No note.
+- **Missing `Meeting Log` or `Feedback Stream`**: Add empty tables with full column sets. No note. (See the "v1 `1:1 Log` section exists but no `Meeting Log` section" rule below — it covers the rename case.)
 - **Missing `Stakeholder Backgrounds`**: Add empty table + empty "Stakeholder Details" subheader. No note.
+- **v1 `1:1 Log` section exists but no `Meeting Log` section**: rename the heading in-place to `## Meeting Log (fka 1:1 Log)`. Add `Type`, `Participants`, `Linked Prep` columns. Existing rows: set `Type: 1-1`, derive `Participants` from the v1 `Participant` column (`manager` → user's manager name from Manager Background; `K###` → Name lookup), `Linked Prep` empty. Preserve all existing data. No note needed — silent migration.
+- **Missing `Meeting Preps` section**: Add the section header + empty table with the full column set + empty "Meeting Preps Details" subheader. No note.
 
 ## Column-level migrations in Performance Measures Tracker
 
@@ -16,6 +18,17 @@ After reading `coaching_state.md` at session start, check whether it contains al
 - **Missing `Priority Weight` column**: Add the column. Initialize all existing rows to `Med`. Note in Coaching Notes: "[date]: Priority Weight column added — defaults to Med. Run `/log-company-goals` to recompute."
 - **Missing `Supporting Artifact IDs` column**: Add the column, empty.
 - **Missing `Last Reviewed` column**: Add the column, empty.
+
+## Column-level migrations in Stakeholder Backgrounds
+
+- **Missing `Relationship Last Reviewed` column**: Add the column, empty for all existing rows. Populated on next debrief that triggers a drift flag.
+- **Relationship Type values from v1 informal strings**: On first read, map to the canonical enum in `references/stakeholder-relationship-types.md`. Best-effort mapping:
+  - `collaborator` → `Partner`
+  - `sponsor` → `Senior Partner`
+  - `blocker` → `Upstream`
+  - `customer` → `Customer`
+  - `peer` → `Peer`
+  - Unmatched values: become `Peer (<original>)`. Add a Coaching Note: `[date]: Relationship Type values with non-canonical labels — recategorize at next /status.` /status surfaces this once.
 
 ## Column-level migrations in Artifact Library
 
@@ -32,5 +45,7 @@ After reading `coaching_state.md` at session start, check whether it contains al
 ## When migration DOES affect immediate recommendations
 
 If the user is running `/review-progress` and the Performance Measures Tracker is missing the `Trend` column, after migration, note in the response: "I added the Trend column to your measures — this is the first snapshot, so all Trends start at Insufficient Signal. Future snapshots will populate real trend direction."
+
+If the user is running `/prep-stakeholder` and the stakeholder's Relationship Type was mapped to the canonical enum (or became `Peer (<original>)`), note in the response: "I remapped **[Name]**'s Relationship Type to `[canonical]` — update it with `/ingest-stakeholder` if that's not right."
 
 Otherwise, migrate silently.

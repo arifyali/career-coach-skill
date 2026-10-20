@@ -81,4 +81,4 @@ If the user has no short-term Career Goal set yet, output Momentum but mark Traj
 
 The review window is the span the coach uses to assess Trend and detect stale evidence. Default: 30 days when `Review cycle timeline` is ongoing; otherwise, span from the previous `/review-progress` run through today.
 
-An artifact "landed in the review window" if its Date is within the window. A measure is "actively worked on in the window" if at least one 1:1 Log row or Feedback Stream row in the window has it in `Linked Measures`.
+An artifact "landed in the review window" if its Date is within the window. A measure is "actively worked on in the window" if at least one Meeting Log row or Feedback Stream row in the window has it in `Linked Measures`.

@@ -2,12 +2,22 @@
 
 Keep the state file readable and within reasonable context limits for multi-year coaching engagements. Apply during `/status` at session start when the file is large, or during `/review-progress`.
 
-## 1:1 Log Archival
+## Meeting Log (fka 1:1 Log) Archival
 
-When 1:1 Log exceeds 30 rows:
+When Meeting Log exceeds 30 rows:
 - Summarize older rows (older than 6 months, or older than the previous promotion/review cycle, whichever is more recent) into a `### Historical Summary` block above the recent table.
 - Keep the most recent 20 rows as individual entries.
-- The summary should preserve: themes raised repeatedly, major feedback inflection points, major follow-ups and whether they closed.
+- The summary should preserve: themes raised repeatedly, major feedback inflection points, major follow-ups and whether they closed, patterns across meeting types (1-1 vs group).
+
+## Meeting Preps Archival
+
+Meeting Preps rows accumulate quickly. Apply at `/status` and `/review-progress`:
+
+- **`Status: Done` rows older than 90 days**: move to a `### Archived Preps` section at the bottom of the Meeting Preps section. Keep the row in the table (shortened: ID, Date, Type, Participant Names, Status, Linked Meeting Log row). Compress the Details block to a single bullet summary: "Agenda covered X; drift flags: [list]."
+- **`Status: Cancelled` rows**: archive immediately on cancellation. Keep the ID, Date, Participant Names, cancellation reason. Discard Details — cancelled preps aren't referenced again.
+- **`Status: Scheduled` rows older than 30 days with no debrief**: don't archive — surface at `/status` ("MTG007 for your 1:1 with [name] is 32 days old — did the meeting happen? Run `/log-1-1` to debrief or discard-prep to clear.").
+
+Rationale: Done preps are historical reference but not often re-read. Cancelled preps are noise. Stale Scheduled rows are a signal the user forgot a debrief — don't bury them.
 
 ## Feedback Stream Archival
 

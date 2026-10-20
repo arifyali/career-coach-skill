@@ -120,4 +120,4 @@ Use when the user's role doesn't fit cleanly into the others, OR for a mentee wh
 - `/ingest-leveling` uses the active profile's seed measures as fallback rows if the user has no leveling doc yet (marked with `Source: role-profile seed` so they can be upgraded later).
 - `/log-artifact` offers the active profile's competency tags as defaults in step 6 of the capture flow.
 - `/review-measures` and `/review-progress` do not change behavior per profile — they're rubric-driven, not role-driven.
-- When a user re-runs `/kickoff` with a different role, update `Role profile source`. Preserve Artifact Library and 1:1 Log — only Profile and (optionally, with confirmation) Performance Measures Tracker rows sourced from seeds get overwritten.
+- When a user re-runs `/kickoff` with a different role, update `Role profile source`. Preserve Artifact Library and Meeting Log — only Profile and (optionally, with confirmation) Performance Measures Tracker rows sourced from seeds get overwritten.

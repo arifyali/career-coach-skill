@@ -13,9 +13,14 @@ Show the user the available commands with one-line descriptions. Keep it compact
 - `/ingest-stakeholder <pdf> <role>` — Parse stakeholder LinkedIn PDF
 - `/ingest-leveling <pdf-or-paste>` — Extract performance measures from leveling doc
 
+### Meetings — prep
+- `/prep-1-1 [--with <ids>] [artifact-path]` — Prep for a 1:1 with your manager (optionally joint). Artifact optional.
+- `/prep-stakeholder <id1> [id2 ...] [--with-manager] [--with-skip] [artifact-path]` — Prep for a stakeholder meeting (1 or more stakeholders).
+
 ### Capture
 - `/log-artifact` — Log an accomplishment in XYZ format (quantified Y required)
-- `/log-1-1` — Capture 1:1 notes, feedback, follow-ups
+- `/log-1-1` — Capture a 1:1 (prep-aware: debriefs against a matching Meeting Prep if one exists)
+- `/log-stakeholder-meeting <id-or-name>` — Debrief a stakeholder meeting (prep-aware)
 - `/log-feedback` — Log standalone feedback from stakeholders / peers / review docs
 
 ### Review

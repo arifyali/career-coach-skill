@@ -47,9 +47,29 @@ LinkedIn PDFs: on LinkedIn, go to a profile -> "More" -> "Save to PDF". The skil
 
 ```
 /log-artifact        # log an accomplishment (quantified Y enforced)
-/log-1-1             # capture a 1:1
+/log-1-1             # capture a 1:1 (prep-aware)
 /log-feedback        # standalone feedback (Slack, email, review doc)
 ```
+
+### 4b. Meeting prep + debrief loop
+
+Walk into meetings with an agenda and anticipated questions shaped by your actual state (manager/stakeholder priorities, open gaps, measures with weak evidence, pending feedback). Walk out and debrief against the prep so drift gets caught.
+
+```
+# Prep
+/prep-1-1                                       # pure 1:1 with your manager
+/prep-1-1 --with K002 ./review-draft.pdf        # joint 1:1 (manager + one stakeholder, with artifact)
+/prep-stakeholder K002                          # single stakeholder meeting
+/prep-stakeholder K002 K007 --with-manager      # roadmap sync with manager + two stakeholders
+
+# Debrief
+/log-1-1                                        # auto-detects a matching Meeting Prep (manager in roster)
+/log-stakeholder-meeting K002                   # auto-detects a matching Meeting Prep (stakeholder in roster)
+```
+
+Each prep writes a Meeting Prep row with a copy-paste-ready agenda block for your calendar invite, plus per-participant anticipated questions and user-side questions-to-ask (grouped by person, so you know who to ask what). Debrief flows walk the agenda against reality and run per-participant drift checks against each person's profile — Relationship Type shifts, priority changes, and closed/opened gaps all surface and offer background updates.
+
+Multi-participant meetings are supported end-to-end: joint 1:1s, roadmap reviews, cross-team syncs. Either debrief command (`/log-1-1` or `/log-stakeholder-meeting`) matches any prep where its target is in the participant list, so joint meetings can be debriefed via whichever entry point feels natural.
 
 ### 5. Check trajectory
 
@@ -104,7 +124,7 @@ Supported role profiles: `data-scientist`, `analytics-engineer`, `bi-engineer`, 
 
 ## Design philosophy
 
-- **Evidence over narrative.** Every maturity call, Momentum Score, and Trajectory Call cites artifact IDs, feedback dates, or 1:1 Log rows. If evidence is weak, the skill says so.
+- **Evidence over narrative.** Every maturity call, Momentum Score, and Trajectory Call cites artifact IDs, feedback dates, or Meeting Log rows. If evidence is weak, the skill says so.
 - **Friction where it matters.** The quantified-Y guardrail on artifacts, the explicit confirmation on state overwrites, the user-confirmed updates on Manager Background — these are the parts that prevent a library of plausible-sounding nothing.
 - **Simple scoring, visible math.** The Momentum formula is a short weighted average. The response shows every input. You can dispute specific maturity calls, not an opaque score.
 - **One source of truth per concept.** XYZ artifacts live here. STAR enrichment lives in `interview-coach-skill`. Performance measures live here. Interview stories live there. The handoff is one-way and file-based.
