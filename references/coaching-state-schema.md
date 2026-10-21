@@ -187,7 +187,14 @@ _(filled in at debrief)_
 - Recap: [confirmed roll-up of the week's daily entries, 3-5 lines]
 - Progress Snapshot / Headline / Career-goal movement / Shifts / Commitment flips / Trust review / Captures
 
-[One `###` header per date, appended chronologically (newest at the bottom). Multiple rhythm entries on the same day nest under one header. Written by `/daily` and `/weekly` only; full field rules in `references/commands/daily.md` and `references/commands/weekly.md`. `Recap` lines are user-confirmed (see `references/rhythm-prompts.md`). A skipped prompt is recorded as `—`; an all-skipped entry is written as `(empty)` so pattern checks can count it. Rhythms are a journal, not a source of record — anything that matters is captured as `A###` / `C###` / Feedback Stream rows and referenced from the `Captures:` line.]
+#### monthly-pre ([HH:MM])
+- Focus / Evidence by month-end / Invest in / Captures
+
+#### monthly-debrief ([HH:MM])
+- Recap: [confirmed roll-up of the month's weekly recaps, 4-6 lines]
+- Momentum / Measures reviewed / Against the goal / Carry forward / Captures
+
+[One `###` header per date, appended chronologically (newest at the bottom). Multiple rhythm entries on the same day nest under one header. Written by `/daily`, `/weekly`, and `/monthly` only; full field rules in their command references. `Recap` lines are user-confirmed and are the base layer for the next roll-up (see `references/rhythm-prompts.md`). A skipped prompt is recorded as `—`; an all-skipped entry is written as `(empty)` so pattern checks can count it. Rhythms are a journal, not a source of record — anything that matters is captured as `A###` / `C###` / Feedback Stream rows and referenced from the `Captures:` line.]
 
 ## Session Log
 ### Historical Summary (when log exceeds 15 rows, summarize older entries here)

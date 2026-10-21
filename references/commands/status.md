@@ -33,14 +33,15 @@ Check in this order; use the first match:
 7. **Blocked-stale commitments** (Status: Blocked AND Last Updated > 14 days ago) → `/commitment <C###>` ("[C###] has been Blocked for [N] days with no status update. Either unblock, renegotiate, or cancel.").
 8. **Low-trust signal source on a High-weight measure** → `/vibe-check <id>` ("[name] is the signal source on M### (High weight) and at Low trust. Trust Log shows [pattern]. Prep extra evidence before next review."). Trust does not affect Momentum directly — this is a parallel career-progression risk.
 9. **Missed-commitments pattern** (2+ you→them `missed commitment` or `dropped thread` events on anyone in last 60 days) → `/vibe-check <id>` ("[N] missed commitments logged with [name] in 60 days. Worth reviewing the Trust Log before your next interaction.").
-10. **Weekly rhythm due** — no `weekly-pre` in Rhythms for the current week (Mon-Sun) and it's Mon/Tue → `/weekly pre`; or no `weekly-debrief` for the current week and it's Thu-Sun → `/weekly debrief` ("Haven't closed out the week yet — `/weekly debrief` drafts a recap from your dailies for you to edit, then runs your progress read and walks open commitments."). Skip if the user has never run a rhythm and Session Log shows they prefer direct commands (see Coaching Notes).
-11. **Company Context > 90 days stale** → `/log-company-goals` ("your Company Context was last refreshed [date] — if OKRs rolled over, Priority Weights are off").
-12. **Pending `non-quant-reason` artifacts with a `follow up by` date in the past** → `/log-artifact --improve A###` for each, with the specific follow-up measurement to attach.
-13. **Over-assessed measures from last `/review-measures`** → `/review-measures` to address.
-14. **No Performance Measures Tracker yet** → `/ingest-leveling <path>` ("you haven't ingested your leveling doc yet").
-15. **No artifact in last 30 days** → `/daily debrief` if it's after 12:00, else `/weekly debrief` ("you haven't logged work in a month — the debrief will pull out what shipped"). Use `/log-artifact` directly only if the user has already named the thing.
-16. **New Meeting Log entry needed** (last Meeting Log row is > 2 weeks ago) → `/log-1-1` ("worth capturing anything from recent 1:1s") — if there's an upcoming scheduled 1:1, suggest `/prep-1-1` instead.
-17. Otherwise → the daily rhythm for the time of day: `/daily pre` (no `daily-pre` today, before 17:00) or `/daily debrief` ("Nothing urgent flagging. `/daily pre` takes about a minute and sets up the day — or tell me what's on your mind.").
+10. **Monthly rhythm due** — no `monthly-debrief` for last month and it's days 1-7 → `/monthly debrief` ("Last month hasn't been closed out — the debrief drafts a recap from your weekly recaps for you to edit."); or no `monthly-pre` this month and it's days 1-7 → `/monthly pre`; or last 5 days of the month with no `monthly-debrief` yet → `/monthly debrief`. Same skip condition as the weekly rule below.
+11. **Weekly rhythm due** — no `weekly-pre` in Rhythms for the current week (Mon-Sun) and it's Mon/Tue → `/weekly pre`; or no `weekly-debrief` for the current week and it's Thu-Sun → `/weekly debrief` ("Haven't closed out the week yet — `/weekly debrief` drafts a recap from your dailies for you to edit, then runs your progress read and walks open commitments."). Skip if the user has never run a rhythm and Session Log shows they prefer direct commands (see Coaching Notes).
+12. **Company Context > 90 days stale** → `/log-company-goals` ("your Company Context was last refreshed [date] — if OKRs rolled over, Priority Weights are off").
+13. **Pending `non-quant-reason` artifacts with a `follow up by` date in the past** → `/log-artifact --improve A###` for each, with the specific follow-up measurement to attach.
+14. **Over-assessed measures from last `/review-measures`** → `/review-measures` to address.
+15. **No Performance Measures Tracker yet** → `/ingest-leveling <path>` ("you haven't ingested your leveling doc yet").
+16. **No artifact in last 30 days** → `/daily debrief` if it's after 12:00, else `/weekly debrief` ("you haven't logged work in a month — the debrief will pull out what shipped"). Use `/log-artifact` directly only if the user has already named the thing.
+17. **New Meeting Log entry needed** (last Meeting Log row is > 2 weeks ago) → `/log-1-1` ("worth capturing anything from recent 1:1s") — if there's an upcoming scheduled 1:1, suggest `/prep-1-1` instead.
+18. Otherwise → the daily rhythm for the time of day: `/daily pre` (no `daily-pre` today, before 17:00) or `/daily debrief` ("Nothing urgent flagging. `/daily pre` takes about a minute and sets up the day — or tell me what's on your mind.").
 
 ### Step 4 — Timeline-aware adjustments
 

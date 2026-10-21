@@ -9,10 +9,11 @@ Show the user the available commands with one-line descriptions. Keep it compact
 ```markdown
 ## career-coach-skill — Start here
 
-Most days you only need two commands. They show what's on deck, ask a few questions, and route your answers into artifacts, feedback, and commitments for you.
+Most of the time you only need the rhythms. They show what's on deck, ask a few questions, and route your answers into artifacts, feedback, and commitments for you. Each debrief builds a recap on the one below it.
 
 - `/daily` — Morning pre-brief or end-of-day debrief (inferred from time of day; force with `pre` / `debrief`)
 - `/weekly` — Start-of-week pre-brief or end-of-week debrief (recap from your dailies + Momentum and Trajectory read)
+- `/monthly` — Start-of-month focus or end-of-month debrief (recap from your weeklies + measure review)
 
 ### When something specific comes up
 - `/prep-1-1` / `/prep-stakeholder <id>` — Prep for a meeting
@@ -32,6 +33,7 @@ Or just describe what happened in plain language — I'll route it.
 ### Rhythms (start here)
 - `/daily [pre|debrief]` — Daily pre-brief or debrief; guided prompts that route into captures
 - `/weekly [pre|debrief]` — Weekly pre-brief or debrief; debrief builds a recap on the week's dailies and wraps `/review-progress`
+- `/monthly [pre|debrief]` — Monthly pre-brief or debrief; debrief builds a recap on the weekly recaps and wraps `/review-measures`
 
 ### Setup
 - `/kickoff` — Initialize profile, career goals, company context

@@ -40,9 +40,10 @@ Deprecated measures (from `/ingest-leveling` on a doc that no longer contains th
 
 ## Rhythms Archival
 
-Rhythm entries accumulate fastest of any section (up to ~12 per week). Apply at `/status` and `/weekly debrief`:
+Rhythm entries accumulate fastest of any section (up to ~12 per week). Apply at `/status` and `/monthly debrief`:
 
-- Entries older than 60 days: compress into the Rhythms `### Historical Summary` block, 2-4 lines per month (recurring intentions and risks, how often rhythms ran and how many were empty, notable captures by ID).
+- Daily and weekly entries older than 60 days: compress into the Rhythms `### Historical Summary` block, 2-4 lines per month. Where that month has a confirmed `monthly-debrief` Recap, use it as the summary (plus a line on how often rhythms ran and how many were empty) — it's already user-approved. Otherwise summarize recurring intentions and risks and notable captures by ID.
+- `monthly-pre` / `monthly-debrief` entries are kept for 12 months before compressing — they're small and are the long-run record.
 - Keep the most recent 60 days as individual entries.
 - Never delete captured IDs from the summary — they're how a reader traces back from a month's narrative to the actual records.
 

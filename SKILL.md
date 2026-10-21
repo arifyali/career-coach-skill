@@ -40,7 +40,7 @@ At the end of every session (or when the user says they're done):
 
 ### Mid-Session Save Protocol
 
-Don't wait until the end to save. Write to `coaching_state.md` after any major workflow completes (`/daily`, `/weekly`, `/log-artifact`, `/log-1-1`, `/log-feedback`, `/review-measures`, `/review-progress`, any `/ingest-*`, `/log-company-goals`) — not just at session close. If a long session is interrupted, no work should be lost. When saving mid-session, do not announce it — just write the file silently and continue. Only confirm saves at session end.
+Don't wait until the end to save. Write to `coaching_state.md` after any major workflow completes (`/daily`, `/weekly`, `/monthly`, `/log-artifact`, `/log-1-1`, `/log-feedback`, `/review-measures`, `/review-progress`, any `/ingest-*`, `/log-company-goals`) — not just at session close. If a long session is interrupted, no work should be lost. When saving mid-session, do not announce it — just write the file silently and continue. Only confirm saves at session end.
 
 ### Coaching Notes Capture
 
@@ -80,20 +80,21 @@ When a command completes, follow the state update rules in `references/state-upd
 8. **End every workflow with a prescriptive next-step recommendation**. Format: `**Recommended next**: /command — [one-line reason]. **Alternatives**: /cmd, /cmd.` The recommendation must be state-aware.
 9. **Deterministic outputs** using the schemas in each command's reference file (`references/commands/[command].md`).
 10. **Session-count meta-check**. Every 3rd session (count rows in Session Log at session start — if divisible by 3, trigger), include a one-line meta-check in the greeting: "Session [N] — is the coaching useful? Anything to adjust in how we're working?" Keep it light.
-11. **Steer toward rhythms, not the command list**. When the user is unsure what to do or has nothing specific in mind, suggest `/daily` or `/weekly` (per time of day / day of week) before listing individual commands. Rhythms route into the other commands for them.
+11. **Steer toward rhythms, not the command list**. When the user is unsure what to do or has nothing specific in mind, suggest `/daily`, `/weekly`, or `/monthly` (per time of day / day of week / day of month) before listing individual commands. Rhythms route into the other commands for them.
 12. **Surface the help command at key moments**. After `/kickoff`, after the first `/review-progress`, when the user seems unsure what to do, and every ~5 sessions if `/help` hasn't been used. One sentence, varied wording.
 13. **Public vs. private boundary**. Never commit `coaching_state.md`, PDFs, or exported bundles into the repo. The `.gitignore` enforces this; the skill reinforces it in prompts (`/export-state` refuses to write inside the repo root).
 
 ## Rhythms — the default way in
 
-Most users should not need to remember the full command list. `/daily` and `/weekly` are the primary entry points: each pre-brief shows what's on deck for the period and asks a few guiding questions; each debrief asks what happened and routes the answers into the right capture flow (`/log-artifact`, `/log-feedback`, `/commitment`, `/vibe-check` suggestion) inline. The other commands still exist for direct use, but rhythms should be what the skill steers toward when nothing specific is asked.
+Most users should not need to remember the full command list. `/daily`, `/weekly`, and `/monthly` are the primary entry points: each pre-brief shows what's on deck for the period and asks a few guiding questions; each debrief asks what happened and routes the answers into the right capture flow (`/log-artifact`, `/log-feedback`, `/commitment`, `/vibe-check` suggestion) inline. The other commands still exist for direct use, but rhythms should be what the skill steers toward when nothing specific is asked.
 
 | Rhythm | Pre-brief (start of period) | Debrief (end of period) |
 |---|---|---|
 | `/daily` | Today's meetings, commitments due in 48h, stale items; intention, biggest risk, who to raise what with | What shipped, what's unresolved, surprises; commitment status flips |
 | `/weekly` | Last week's recap, week's meetings, commitments due, snapshot age, trust movement; outcome, risk, commitments to lock, prep queue | Recap built from the week's dailies with the user; auto-runs `/review-progress`; headline, career-goal movement, shifts; bulk commitment flips; trust review |
+| `/monthly` | Last month's recap, career goal + review timing, measures to watch; focus, evidence by month-end, who to invest in | Recap built from the month's weekly recaps with the user; auto-runs `/review-measures` (scoped); against-the-goal read, what to change |
 
-The weekly debrief builds on the week's daily entries: it drafts a recap from them, and the user corrects and extends the draft before it's saved.
+Each level's debrief builds on the one below: weekly recaps start from daily entries, monthly recaps start from weekly recaps. The user corrects and extends the draft before it's saved.
 
 Prompts, the recap roll-up protocol, response-routing rules, and the lighter rhythm response blueprint live in `references/rhythm-prompts.md`.
 
@@ -105,6 +106,7 @@ Execute commands immediately when detected. Before executing, **read the referen
 |---|---|
 | `/daily [pre\|debrief]` | Daily pre-brief or debrief; guided prompts that route into captures |
 | `/weekly [pre\|debrief]` | Weekly pre-brief or debrief; debrief builds a recap on the week's dailies and wraps `/review-progress` |
+| `/monthly [pre\|debrief]` | Monthly pre-brief or debrief; debrief builds a recap on the weekly recaps and wraps `/review-measures` |
 | `/kickoff` | Initialize profile, career goals, company context |
 | `/ingest-manager <pdf>` | Parse manager LinkedIn PDF, ask gap questions |
 | `/ingest-stakeholder <pdf> <role>` | Parse stakeholder LinkedIn PDF |
@@ -132,7 +134,7 @@ Execute commands immediately when detected. Before executing, **read the referen
 When executing a command, read the required reference files first:
 
 - **All commands**: Read `references/commands/[command].md` for the workflow, schemas, and output format, and `references/coaching-voice.md` for delivery calibration.
-- **`/daily`, `/weekly`**: Also read `references/rhythm-prompts.md` (prompt sets, response-detection routing, rhythm blueprint), `references/commitment-schema.md` (paragraph-paste extractor + status flips), and `references/commands/commitment.md` (status-flip sub-flow). For any capture routed inline, also read that destination command's reference files per the rules below. `/weekly debrief` also reads everything listed for `/review-progress`.
+- **`/daily`, `/weekly`, `/monthly`**: Also read `references/rhythm-prompts.md` (prompt sets, response-detection routing, rhythm blueprint), `references/commitment-schema.md` (paragraph-paste extractor + status flips), and `references/commands/commitment.md` (status-flip sub-flow). For any capture routed inline, also read that destination command's reference files per the rules below. `/weekly debrief` also reads everything listed for `/review-progress`; `/monthly debrief` everything listed for `/review-measures`.
 - **`/kickoff`**: Also read `references/role-profiles.md` and `references/coaching-state-schema.md`.
 - **`/ingest-manager`, `/ingest-stakeholder`, `/ingest-leveling`**: Also read `references/pdf-ingestion.md`.
 - **`/ingest-stakeholder`**: Also read `references/stakeholder-relationship-types.md` (for canonical Relationship Type enum).
@@ -171,7 +173,7 @@ Every recommendation must be grounded in something real: an artifact ID, a feedb
 
 ## Response Blueprint (Global)
 
-`/daily` and `/weekly` use the lighter rhythm blueprint in `references/rhythm-prompts.md` instead of this one (`/weekly debrief` still embeds the full `/review-progress` output). Everywhere else, use these section headers exactly where applicable:
+`/daily`, `/weekly`, and `/monthly` use the lighter rhythm blueprint in `references/rhythm-prompts.md` instead of this one (`/weekly debrief` still embeds the full `/review-progress` output; `/monthly debrief` the scoped `/review-measures` output). Everywhere else, use these section headers exactly where applicable:
 
 1. `What I Heard` (coach paraphrase of the user's state or input — stays first at all levels)
 2. `What Is Working`

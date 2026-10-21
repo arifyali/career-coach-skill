@@ -15,12 +15,13 @@ Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM
 
 ## Commands at a glance
 
-Day to day you mostly need two: `/daily` and `/weekly`. They show what's on deck, ask a few guiding questions, and route your answers into the capture commands below so you don't have to pick one yourself. Everything else is there for when you want to go direct.
+Day to day you mostly need the rhythms: `/daily`, `/weekly`, and `/monthly`. They show what's on deck, ask a few guiding questions, and route your answers into the capture commands below so you don't have to pick one yourself. Weekly and monthly debriefs start from a recap drafted from the level below, which you correct and extend. Everything else is there for when you want to go direct.
 
 | Phase | Command | When to use |
 |---|---|---|
 | Rhythm | `/daily [pre\|debrief]` | Start and end of each day — quick brief, guided prompts, commitment flips |
 | Rhythm | `/weekly [pre\|debrief]` | Start and end of each week — recap from your dailies, `/review-progress`, bulk commitment flips, trust review |
+| Rhythm | `/monthly [pre\|debrief]` | Start and end of each month — set a focus; recap from your weeklies, scoped `/review-measures` |
 | Setup | `/kickoff` | First run; also when role, level, or career goals change |
 | Setup | `/ingest-manager <pdf>` | After kickoff; whenever manager changes |
 | Setup | `/ingest-stakeholder <pdf>` | Per key stakeholder; repeat as team shifts |
@@ -32,8 +33,8 @@ Day to day you mostly need two: `/daily` and `/weekly`. They show what's on deck
 | Capture | `/log-stakeholder-meeting <id-or-name>` | After a stakeholder meeting (prep-aware) |
 | Capture | `/log-feedback` | Standalone feedback (Slack, email, review doc) |
 | Capture | `/commitment [add\|<C###>\|--from-paste\|--mine\|--waiting\|--to\|--overdue]` | Track accepted commitments; auto-proposes Trust Log entries on status flips |
-| Review | `/review-measures` | Monthly, or when evidence feels thin on a measure |
-| Review | `/review-progress` | Monthly; definitely before any formal review cycle |
+| Review | `/review-measures` | Runs inside `/monthly debrief`; directly when evidence feels thin on a measure |
+| Review | `/review-progress` | Runs inside `/weekly debrief`; definitely before any formal review cycle |
 | Review | `/log-company-goals` | New quarter, OKR refresh, team priority shift |
 | Portability | `/export-artifacts` | Starting interview prep |
 | Portability | `/export-state` | Backing up or moving machines |
@@ -80,9 +81,11 @@ LinkedIn PDFs: on LinkedIn, go to a profile -> "More" -> "Save to PDF". The skil
 /daily               # evening: what shipped / unresolved / surprises, then flip commitment statuses
 /weekly              # Monday: week ahead, commitments to lock, meetings worth prepping
 /weekly              # Friday: recap drafted from your dailies, progress read, commitment flips, trust review
+/monthly             # 1st week: pick the month's focus measure and the evidence you want by month-end
+/monthly             # last week: recap drafted from your weeklies, measure review, what to change
 ```
 
-Mode (pre vs. debrief) is inferred from time of day / day of week; pass `pre` or `debrief` to force it. Answers that sound like a shipped outcome, feedback, or a commitment get offered as a capture — nothing is written until you accept. Skip any prompt; the rituals don't nag.
+Mode (pre vs. debrief) is inferred from time of day / day of week / day of month; pass `pre` or `debrief` to force it. Answers that sound like a shipped outcome, feedback, or a commitment get offered as a capture — nothing is written until you accept. Skip any prompt; the rituals don't nag.
 
 ### 4a. Or capture directly
 
