@@ -91,9 +91,11 @@ Most users should not need to remember the full command list. `/daily` and `/wee
 | Rhythm | Pre-brief (start of period) | Debrief (end of period) |
 |---|---|---|
 | `/daily` | Today's meetings, commitments due in 48h, stale items; intention, biggest risk, who to raise what with | What shipped, what's unresolved, surprises; commitment status flips |
-| `/weekly` | Week's meetings, commitments due, snapshot age, trust movement; outcome, risk, commitments to lock, prep queue | Auto-runs `/review-progress`; headline ship, career-goal movement, shifts; bulk commitment flips; trust review |
+| `/weekly` | Last week's recap, week's meetings, commitments due, snapshot age, trust movement; outcome, risk, commitments to lock, prep queue | Recap built from the week's dailies with the user; auto-runs `/review-progress`; headline, career-goal movement, shifts; bulk commitment flips; trust review |
 
-Prompts, response-routing rules, and the lighter rhythm response blueprint live in `references/rhythm-prompts.md`.
+The weekly debrief builds on the week's daily entries: it drafts a recap from them, and the user corrects and extends the draft before it's saved.
+
+Prompts, the recap roll-up protocol, response-routing rules, and the lighter rhythm response blueprint live in `references/rhythm-prompts.md`.
 
 ## Command Registry
 
@@ -102,7 +104,7 @@ Execute commands immediately when detected. Before executing, **read the referen
 | Command | Purpose |
 |---|---|
 | `/daily [pre\|debrief]` | Daily pre-brief or debrief; guided prompts that route into captures |
-| `/weekly [pre\|debrief]` | Weekly pre-brief or debrief; debrief wraps `/review-progress` |
+| `/weekly [pre\|debrief]` | Weekly pre-brief or debrief; debrief builds a recap on the week's dailies and wraps `/review-progress` |
 | `/kickoff` | Initialize profile, career goals, company context |
 | `/ingest-manager <pdf>` | Parse manager LinkedIn PDF, ask gap questions |
 | `/ingest-stakeholder <pdf> <role>` | Parse stakeholder LinkedIn PDF |

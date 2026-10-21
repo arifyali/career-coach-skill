@@ -12,7 +12,7 @@ Show the user the available commands with one-line descriptions. Keep it compact
 Most days you only need two commands. They show what's on deck, ask a few questions, and route your answers into artifacts, feedback, and commitments for you.
 
 - `/daily` — Morning pre-brief or end-of-day debrief (inferred from time of day; force with `pre` / `debrief`)
-- `/weekly` — Start-of-week pre-brief or end-of-week debrief (debrief includes your Momentum + Trajectory read)
+- `/weekly` — Start-of-week pre-brief or end-of-week debrief (recap from your dailies + Momentum and Trajectory read)
 
 ### When something specific comes up
 - `/prep-1-1` / `/prep-stakeholder <id>` — Prep for a meeting
@@ -31,7 +31,7 @@ Or just describe what happened in plain language — I'll route it.
 
 ### Rhythms (start here)
 - `/daily [pre|debrief]` — Daily pre-brief or debrief; guided prompts that route into captures
-- `/weekly [pre|debrief]` — Weekly pre-brief or debrief; debrief wraps `/review-progress`
+- `/weekly [pre|debrief]` — Weekly pre-brief or debrief; debrief builds a recap on the week's dailies and wraps `/review-progress`
 
 ### Setup
 - `/kickoff` — Initialize profile, career goals, company context

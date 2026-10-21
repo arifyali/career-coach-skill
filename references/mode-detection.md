@@ -4,7 +4,7 @@ When no explicit command is given, detect the user's intent and route. Use first
 
 1. Explicit command (`/kickoff`, `/log-artifact`, etc.)
 1a. "Start my day" / "Morning check-in" / "What's on today" → `/daily pre`. "End of day" / "Wrapping up for the day" / "How did today go" → `/daily debrief`.
-1b. "Plan my week" / "What's on this week" / "Week ahead" → `/weekly pre`. "Wrap up the week" / "Weekly review" / "How did this week go" → `/weekly debrief`.
+1b. "Plan my week" / "What's on this week" / "Week ahead" → `/weekly pre`. "Wrap up the week" / "Weekly review" / "How did this week go" / "Here's my weekly recap" → `/weekly debrief` (fold the pasted recap into Step 1).
 2. PDF path in the message → `/ingest-manager`, `/ingest-stakeholder`, `/ingest-leveling`, or `/prep-*` based on filename hints (`linkedin`, `profile`, `resume` → manager/stakeholder ingest; `leveling`, `ladder`, `rubric`, `competencies` → leveling; `deck`, `review`, `draft`, `roadmap` → prep). If ambiguous, ask.
 3. "Prep for a 1:1" / "I have a 1:1 tomorrow" / "preparing for my 1:1 [with my manager]" → `/prep-1-1`
 4. "Prep for a joint 1:1 with [manager] and [stakeholder]" / "1:1 with [stakeholder] and my manager" → `/prep-1-1 --with <stakeholder-id>`
@@ -25,7 +25,7 @@ When no explicit command is given, detect the user's intent and route. Use first
 19. "How am I doing with [name]" / "What's the vibe with my manager" / "Trust check on [name]" → `/vibe-check <id>` (deep view)
 20. "Vibe check" / "Trust status" / "How are my relationships trending" → `/vibe-check` (roster mode)
 21. "I promised [X]" / "I told [name] I'd [X]" / "committed to [name] on [X]" (single sentence) → `/commitment add` with pre-filled values (Owner=me; Owed to resolved from the name mentioned; Commitment pre-filled from the sentence)
-22. "Here's my weekly recap: ..." / "Multi-sentence paragraph of commitments / feedback / updates" → `/commitment --from-paste`
+22. "Here's what happened: ..." / "Multi-sentence paragraph of commitments / feedback / updates" with no rhythm framing → `/commitment --from-paste` (a recap framed as the week's goes to the rhythm debrief per 1b)
 23. "Did I close out [X]" / "What's the status of my commitment to [name]" → `/commitment --to <id>` or `/commitment <C###>` if the ID is referenced
 24. "What do I owe people" / "My commitments" / "My open follow-ups" → `/commitment` (list mode)
 25. "I missed the deadline on [X]" / "I need to renegotiate [X]" / "The [commitment] is blocked" → `/commitment <C###> <cancel/renegotiate/block>`

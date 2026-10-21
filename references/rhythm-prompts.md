@@ -1,6 +1,6 @@
 # Rhythm Prompts
 
-Central reference for the structured prompts used by `/daily` and `/weekly`. Also defines response-detection rules (how to spot an artifact / feedback / commitment candidate in a free-text answer and route it to the right capture flow) and the response-blueprint overrides for rhythm commands.
+Central reference for the structured prompts used by `/daily` and `/weekly`. Also defines the recap roll-up protocol (how the weekly debrief builds on the week's daily entries), response-detection rules (how to spot an artifact / feedback / commitment candidate in a free-text answer and route it to the right capture flow) and the response-blueprint overrides for rhythm commands.
 
 Read this before `/daily` or `/weekly`.
 
@@ -27,13 +27,34 @@ Fire one at a time per the non-negotiable sequencing rule.
 3. **Commitments lock**: "Which commitments do you need to lock in or renegotiate before Friday?" (Pre-surface candidates from Commitments table — Open rows with Due this week or `not agreed`.)
 4. **Meetings worth prepping**: "Any 1:1s or stakeholder meetings worth prepping now?" (Surface Meeting Preps for the next 7 days that have `Status: Scheduled` and no linked artifact.)
 
-### Weekly debrief — 3 prompts (after `/review-progress` auto-invokes)
+### Weekly debrief — 3 prompts (after the recap is confirmed and `/review-progress` runs)
 
-1. **Most important shipped**: "What's the single most important thing that shipped this week?"
+1. **Headline**: "Of what's in the recap, what's the single most important thing that shipped?"
 2. **Career-goal movement**: "What moved on your short-term Career Goal?" (Reference the latest Progress Snapshot's Trajectory Call for grounding.)
-3. **Shifts worth noting**: "Any priority / relationship / trust shifts worth capturing before they fade?"
+3. **Shifts worth noting**: "Anything in the recap that's a priority / relationship / trust shift worth capturing before it fades?"
 
-Order matters: the user has just seen Momentum math + Trust Status from `/review-progress`; these prompts translate that into intention-level reflection.
+Order matters: the user has just confirmed the recap and seen Momentum math + Trust Status from `/review-progress`; these prompts translate that into intention-level reflection. Skip or convert to a confirm question any prompt the recap already answers.
+
+## Recap roll-up protocol
+
+The weekly debrief doesn't start from a blank page. It builds a draft recap from the week's daily entries, then works with the user to correct and extend it. The confirmed recap is stored on the debrief entry.
+
+| Debrief | Base layer | Also reads |
+|---|---|---|
+| `/weekly debrief` | The week's `daily-pre` / `daily-debrief` entries | `weekly-pre` entry; captures dated in the week (A###, F###, C### status changes, Meeting Log rows) |
+
+Steps, one question at a time:
+
+1. **Gather** the base layer and captures for the period.
+2. **Draft** a short recap (3-5 lines). Cite IDs for anything captured. Measure it against the period's pre-brief (Outcome) — "You set out to X; Y happened."
+3. **Show and build**: present the draft and ask "What's wrong or missing?" Then invite any recap the user already wrote elsewhere (a status update, a Slack note, a self-review draft) and fold it in. This replaces a separate paragraph-paste step.
+4. **Route** anything new that reads as an artifact / feedback / commitment through response-detection below; captured IDs go into the recap.
+5. **Confirm** the final text with the user before writing it.
+
+Rules:
+- **Never invent.** If days have no entries and no captures, name the gap ("Nothing logged Wed-Thu — anything from those days?") instead of smoothing over it.
+- **The user's words win.** When the user corrects the draft, take their framing; don't re-argue it in the recap. Disagreement on trajectory belongs in the prompts and coaching read, not in the recap text.
+- **Carry forward explicitly.** Unresolved items from the recap feed the next `weekly-pre` dashboard.
 
 ## Response-detection rules
 
@@ -74,6 +95,7 @@ Trust events in rhythm flows surface a *suggestion* to run `/vibe-check <id>`, b
 Rhythm commands are rituals, not deep workflows. The standard response blueprint (`What I Heard → What Is Working → Gaps To Close → Priority Move → Next Step`) is too heavy. Use this tighter blueprint:
 
 - **Dashboard** (pre-brief only) — read-only state surface
+- **Recap** (weekly debrief only) — the confirmed roll-up, built with the user
 - **Prompts** — walked one at a time
 - **Captures summary** — one line listing what landed in which tables
 - **Priority Move** — single most leveraged next action (only if a clear one emerged from the prompts; otherwise skip)
@@ -82,7 +104,7 @@ Keep the output short. If the daily pre takes more than ~90 seconds of real time
 
 ## Rhythms entry format
 
-Each rhythm run writes an entry to the `## Rhythms` section in `coaching_state.md`. Format defined in `references/coaching-state-schema.md`. Short bullets + a `Captures:` summary line.
+Each rhythm run (`/daily`, `/weekly`) writes an entry to the `## Rhythms` section in `coaching_state.md`. Format defined in `references/coaching-state-schema.md`. Short bullets + a `Captures:` summary line.
 
 Example daily-pre entry written after a hypothetical run:
 
