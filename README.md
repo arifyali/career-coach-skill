@@ -2,7 +2,7 @@
 
 A persistent, evidence-driven career coach for data professionals — built as a Claude Code skill. Tracks performance against your company's leveling criteria, enriches your model of your manager and stakeholders over time, logs 1:1s and inbound feedback, builds a library of accomplishments in Google XYZ format, and shows you how you're trending toward your next career stage.
 
-Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM, and generic data roles. Hands off to [`interview-coach-skill`](../interview-coach-skill) when it's time to prep interviews.
+Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM, and generic data roles. Hands off to [`interview-coach-skill`](https://github.com/noamseg/interview-coach-skill) when it's time to prep interviews.
 
 ## What it does
 
@@ -123,7 +123,7 @@ Review monthly; definitely before any formal review cycle.
 
 ### 6. Export for interview prep
 
-When it's time to prep interviews, `/export-artifacts` writes your XYZ library to `../interview-coach-skill/inbox/career-artifacts.md` by default (configurable at `/kickoff` or per-run). In `interview-coach-skill`, run `/stories add --from-career-coach` to seed STAR drafts.
+When it's time to prep interviews, `/export-artifacts` writes your XYZ library to `../interview-coach-skill/inbox/career-artifacts.md` by default (configurable at `/kickoff` or per-run). Clone [interview-coach-skill](https://github.com/noamseg/interview-coach-skill) next to this repo so that default path resolves (`git clone https://github.com/noamseg/interview-coach-skill.git ../interview-coach-skill`). Then in interview-coach-skill, run `stories add` and point it at that file to seed STAR drafts from your XYZ artifacts. (A dedicated `--from-career-coach` import is proposed in `references/interop-interview-coach.md` but isn't in interview-coach-skill yet.)
 
 ## Public vs. private — what's in the repo
 

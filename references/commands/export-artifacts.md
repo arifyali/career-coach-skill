@@ -37,7 +37,7 @@ Format per `interop-interview-coach.md`. Required elements:
 
 ### Step 5 — Confirm and suggest handoff
 
-"Exported [N] artifacts to [path]. In interview-coach-skill, run `/stories add --from-career-coach` to seed STAR drafts."
+"Exported [N] artifacts to [path]. In interview-coach-skill, run `stories add` and point it at this file to seed STAR drafts."
 
 ## Edge cases
 
@@ -56,5 +56,5 @@ Format per `interop-interview-coach.md`. Required elements:
 ### What Was Exported
 - [list of A### — titles]
 
-**Recommended next**: In interview-coach-skill, run `/stories add --from-career-coach`. **Alternatives**: `/review-progress`, `/log-artifact`
+**Recommended next**: In interview-coach-skill, run `stories add` and point it at the exported file. **Alternatives**: `/review-progress`, `/log-artifact`
 ```

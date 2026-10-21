@@ -1,6 +1,8 @@
 # Interop with interview-coach-skill
 
-One-way, file-based export. Career-coach-skill writes an artifacts file; interview-coach-skill reads it when the user runs `/stories add --from-career-coach`. There is **no reverse sync** and **no shared state file**.
+Upstream: https://github.com/noamseg/interview-coach-skill
+
+One-way, file-based export. Career-coach-skill writes an artifacts file; interview-coach-skill reads it when the user runs `stories add` and points it at the file (or, once the proposed read path below lands upstream, `/stories add --from-career-coach`). There is **no reverse sync** and **no shared state file**.
 
 ## Why a file export, not shared state
 
@@ -58,9 +60,9 @@ The leading `# Career Artifacts — exported [date]` header is required — it's
 - Appends a Session Log row: `Exported N artifacts to <path>`.
 - If the path's parent directory doesn't exist and is NOT `../interview-coach-skill/inbox/`, abort and ask the user to confirm the path or create the directory manually. Rationale: avoid silently creating unexpected directories.
 
-## interview-coach-skill read path
+## interview-coach-skill read path (proposed — not yet upstream)
 
-interview-coach-skill's `references/commands/stories.md` gains a short block describing `/stories add --from-career-coach`:
+Proposed addition to interview-coach-skill's `references/commands/stories.md`: a short block describing `/stories add --from-career-coach`. Until it lands, users get the same result by running plain `stories add` and pointing it at the exported file; the steps below are what that flow should do.
 
 1. Read the career-artifacts file at the configured path (ask the user if not configured).
 2. Verify the leading header matches `# Career Artifacts — exported`.
@@ -88,4 +90,4 @@ The user then runs `/stories improve S###` to upgrade the draft to a 4+ intervie
 
 ## Mentee deployment
 
-Mentees cloning this skill from GitHub inherit the default export path pointing to a sibling `interview-coach-skill/` directory. If they don't have interview-coach-skill installed, `/kickoff` lets them set the path to `none` and the interop layer is dormant. They can set a real path later via `/kickoff` re-run or by hand-editing `Profile.Interview-coach export path`.
+Mentees cloning this skill from GitHub inherit the default export path pointing to a sibling `interview-coach-skill/` directory (`git clone https://github.com/noamseg/interview-coach-skill.git` next to this repo). If they don't have interview-coach-skill installed, `/kickoff` lets them set the path to `none` and the interop layer is dormant. They can set a real path later via `/kickoff` re-run or by hand-editing `Profile.Interview-coach export path`.
