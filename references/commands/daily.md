@@ -1,6 +1,6 @@
 # daily — Daily brief and debrief
 
-Short ritual to protect against forgetting things. Pre-brief in the morning: dashboard + 2-3 structured prompts + optional paragraph-paste. Debrief at end of day: 2-3 reflective prompts + commitment status flip pass + optional paragraph-paste.
+Short ritual to protect against forgetting things. Pre-brief in the morning: dashboard (starting with what yesterday's debrief left open) + 2-3 structured prompts + optional paragraph-paste. Debrief at end of day: 2-3 reflective prompts + commitment status flip pass + optional paragraph-paste.
 
 Both modes write a Rhythms entry so `/status` can detect "when was the last daily?" and surface cadence nudges. Prompts and routing rules live in `references/rhythm-prompts.md` — read that reference before this file.
 
@@ -28,6 +28,7 @@ If the user runs `/daily` and a `daily-pre` entry already exists for today, pref
 
 Read-only surface of today's state. Keep it short — if there's nothing, say so.
 
+- **Carried from last debrief**: the `Unresolved` and `Priority Move for tomorrow` lines from the most recent `daily-debrief` (usually yesterday; the last working day after a weekend). Also the current week's `weekly-pre` `Outcome` line if one exists. Skip lines that are empty or `—`; if there's no prior debrief, skip the bullet.
 - **Meetings today**: Meeting Preps rows with `Date == today` AND `Status: Scheduled`. For each: `MTG### — [names] at [time if captured]`.
 - **Commitments due today or in next 48h**: Commitments rows with `Status: Open` AND `Due ≤ today + 2 days`. For each: `C### — [commitment one-line] — Due: [date]`.
 - **Stale items**:
@@ -36,13 +37,13 @@ Read-only surface of today's state. Keep it short — if there's nothing, say so
   - Feedback floor active (per `references/rubric-performance.md`).
   - Decay-pending trust rows (per `references/vibe-check-rubric.md`).
 
-If all four categories are empty: emit "Clear slate — no meetings, no commitments due in the next 48h, no stale items." Skip to Step 2.
+If nothing carried over and meetings, commitments, and stale items are all empty: emit "Clear slate — no meetings, no commitments due in the next 48h, no stale items." Skip to Step 2.
 
 ### Step 2 — Structured prompts (3)
 
 Per `references/rhythm-prompts.md` — Daily pre-brief set. One at a time:
 
-1. **Intention**: "What's the one thing you want to be true at end of day?"
+1. **Intention**: "What's the one thing you want to be true at end of day?" (If something carried over, offer it: "Yesterday you left [X] open — is that today's one thing, or has something else taken over?")
 2. **Biggest risk**: "What's the biggest risk today — a decision, a dependency, a conversation you've been putting off?"
 3. **Raise with**: "Who do you need to raise what with today?" (Skill pre-surfaces candidates: recent Trust Log drift sources, stakeholders Owed-to on overdue commitments, Feedback Stream Sources with pending items not yet linked to a Meeting Log row.)
 
@@ -127,6 +128,7 @@ Append to `## Rhythms` section:
 - Shipped: [response, one line]
 - Unresolved: [response]
 - Surprises: [response]
+- Priority Move for tomorrow: [from Step 5, or `—`]
 - Captures: [summary]
 ```
 
@@ -136,7 +138,7 @@ Session Log row: `daily-debrief | [capture summary], [N] commitment flips`.
 
 ### Step 5 — Priority Move (optional)
 
-If an unresolved item from Step 1 or Step 3 clearly needs tomorrow's attention, emit:
+If an unresolved item from Step 1 or Step 3 clearly needs tomorrow's attention, emit (and record it on the Rhythms entry so tomorrow's pre-brief picks it up):
 
 > **Priority Move for tomorrow**: [specific action].
 
@@ -154,6 +156,7 @@ Keep it short — rhythms are rituals, not deep workflows.
 ## Daily Brief — [date]
 
 ### Dashboard
+- Carried over: [unresolved + Priority Move from last debrief, or "nothing"]
 - Meetings today: [N]
 - Commitments due in next 48h: [N]
 - Stale items: [brief list or "none"]

@@ -178,6 +178,7 @@ _(filled in at debrief)_
 - Shipped: [one line]
 - Unresolved: [one line]
 - Surprises: [one line]
+- Priority Move for tomorrow: [one line or `—`]
 - Captures: [summary], [N] commitment flips
 
 #### weekly-pre ([day] [HH:MM])

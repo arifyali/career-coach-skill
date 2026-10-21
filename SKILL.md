@@ -90,7 +90,7 @@ Most users should not need to remember the full command list. `/daily`, `/weekly
 
 | Rhythm | Pre-brief (start of period) | Debrief (end of period) |
 |---|---|---|
-| `/daily` | Today's meetings, commitments due in 48h, stale items; intention, biggest risk, who to raise what with | What shipped, what's unresolved, surprises; commitment status flips |
+| `/daily` | What yesterday's debrief left open, today's meetings, commitments due in 48h, stale items; intention, biggest risk, who to raise what with | What shipped, what's unresolved, surprises; commitment status flips |
 | `/weekly` | Last week's recap, week's meetings, commitments due, snapshot age, trust movement; outcome, risk, commitments to lock, prep queue | Recap built from the week's dailies with the user; auto-runs `/review-progress`; headline, career-goal movement, shifts; bulk commitment flips; trust review |
 | `/monthly` | Last month's recap, career goal + review timing, measures to watch; focus, evidence by month-end, who to invest in | Recap built from the month's weekly recaps with the user; auto-runs `/review-measures` (scoped); against-the-goal read, what to change |
 

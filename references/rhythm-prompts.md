@@ -10,7 +10,7 @@ Read this before `/daily`, `/weekly`, or `/monthly`.
 
 Fire one at a time per the non-negotiable sequencing rule.
 
-1. **Intention**: "What's the one thing you want to be true at end of day?"
+1. **Intention**: "What's the one thing you want to be true at end of day?" (Offer what the last `daily-debrief` left Unresolved or set as Priority Move for tomorrow.)
 2. **Biggest risk**: "What's the biggest risk today — a decision, a dependency, a conversation you've been putting off?"
 3. **Raise with**: "Who do you need to raise what with today?" (The skill pre-surfaces candidates from recent Trust Log drift, overdue commitments, pending Feedback Stream entries not yet linked to a Meeting Log row.)
 
@@ -66,7 +66,7 @@ Steps, one question at a time:
 Rules:
 - **Never invent.** If days or weeks have no entries and no captures, name the gap ("Nothing logged Wed-Thu — anything from those days?") instead of smoothing over it.
 - **The user's words win.** When the user corrects the draft, take their framing; don't re-argue it in the recap. Disagreement on trajectory belongs in the prompts and coaching read, not in the recap text.
-- **Carry forward explicitly.** Unresolved items from the recap feed the next pre-brief (weekly → next `weekly-pre` dashboard; monthly → `Carry forward` → next `monthly-pre`).
+- **Carry forward explicitly.** Unresolved items feed the next pre-brief at every level (daily → next `daily-pre` dashboard; weekly → next `weekly-pre` dashboard; monthly → `Carry forward` → next `monthly-pre`).
 
 ## Response-detection rules
 
