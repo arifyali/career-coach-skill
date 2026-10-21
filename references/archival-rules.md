@@ -38,6 +38,14 @@ Never archive. The time series IS the value — compressing it defeats the trend
 
 Deprecated measures (from `/ingest-leveling` on a doc that no longer contains them) stay in the table with `(deprecated [date])` appended to the Measure field. Do not delete — preserves artifact linkage history.
 
+## Rhythms Archival
+
+Rhythm entries accumulate fastest of any section (up to ~12 per week). Apply at `/status` and `/weekly debrief`:
+
+- Entries older than 60 days: compress into the Rhythms `### Historical Summary` block, 2-4 lines per month (recurring intentions and risks, how often rhythms ran and how many were empty, notable captures by ID).
+- Keep the most recent 60 days as individual entries.
+- Never delete captured IDs from the summary — they're how a reader traces back from a month's narrative to the actual records.
+
 ## Session Log Archival
 
 When Session Log exceeds 20 rows:

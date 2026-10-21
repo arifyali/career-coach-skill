@@ -163,6 +163,31 @@ _(filled in at debrief)_
 
 [repeat Details block per commitment]
 
+## Rhythms
+### Historical Summary (when entries are older than 60 days, summarize here)
+[Brief narrative per month: recurring intentions/risks, empty-entry pattern, notable captures.]
+
+### [YYYY-MM-DD]
+#### daily-pre ([HH:MM])
+- Intention: [one line]
+- Biggest risk: [one line]
+- Raise with: [one line]
+- Captures: [e.g., "1 commitment (C004)" or "none"]
+
+#### daily-debrief ([HH:MM])
+- Shipped: [one line]
+- Unresolved: [one line]
+- Surprises: [one line]
+- Captures: [summary], [N] commitment flips
+
+#### weekly-pre ([day] [HH:MM])
+- Outcome / Biggest risk / Commitments to lock / Prep queue / Captures
+
+#### weekly-debrief ([day] [HH:MM])
+- Progress Snapshot / Most important shipped / Career-goal movement / Shifts / Commitment flips / Trust review / Captures
+
+[One `###` header per date, appended chronologically (newest at the bottom). Multiple rhythm entries on the same day nest under one header. Written by `/daily` and `/weekly` only; full field rules in `references/commands/daily.md` and `references/commands/weekly.md`. A skipped prompt is recorded as `—`; an all-skipped entry is written as `(empty)` so pattern checks can count it. Rhythms are a journal, not a source of record — anything that matters is captured as `A###` / `C###` / Feedback Stream rows and referenced from the `Captures:` line.]
+
 ## Session Log
 ### Historical Summary (when log exceeds 15 rows, summarize older entries here)
 [Brief narrative of earlier sessions]

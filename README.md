@@ -15,8 +15,12 @@ Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM
 
 ## Commands at a glance
 
+Day to day you mostly need two: `/daily` and `/weekly`. They show what's on deck, ask a few guiding questions, and route your answers into the capture commands below so you don't have to pick one yourself. Everything else is there for when you want to go direct.
+
 | Phase | Command | When to use |
 |---|---|---|
+| Rhythm | `/daily [pre\|debrief]` | Start and end of each day — quick brief, guided prompts, commitment flips |
+| Rhythm | `/weekly [pre\|debrief]` | Start and end of each week — debrief runs `/review-progress`, bulk commitment flips, trust review |
 | Setup | `/kickoff` | First run; also when role, level, or career goals change |
 | Setup | `/ingest-manager <pdf>` | After kickoff; whenever manager changes |
 | Setup | `/ingest-stakeholder <pdf>` | Per key stakeholder; repeat as team shifts |
@@ -69,7 +73,18 @@ After `/kickoff`, the recommended sequence:
 
 LinkedIn PDFs: on LinkedIn, go to a profile -> "More" -> "Save to PDF". The skill reads the PDF directly, extracts career arc + prior roles + current scope, then asks targeted gap questions.
 
-### 4. Capture work as it happens
+### 4. Run the rhythms
+
+```
+/daily               # morning: today's meetings + commitments due, then intention / risk / who to raise what with
+/daily               # evening: what shipped / unresolved / surprises, then flip commitment statuses
+/weekly              # Monday: week ahead, commitments to lock, meetings worth prepping
+/weekly              # Friday: progress read + bulk commitment flips + trust review
+```
+
+Mode (pre vs. debrief) is inferred from time of day / day of week; pass `pre` or `debrief` to force it. Answers that sound like a shipped outcome, feedback, or a commitment get offered as a capture — nothing is written until you accept. Skip any prompt; the rituals don't nag.
+
+### 4a. Or capture directly
 
 ```
 /log-artifact        # log an accomplishment (quantified Y enforced)

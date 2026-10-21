@@ -94,6 +94,8 @@ local. Full field definitions live in references/coaching-state-schema.md.
 
 ### Commitment Details
 
+## Rhythms
+
 ## Session Log
 ### Recent Sessions
 | Date | Commands Run | Key Outcomes |

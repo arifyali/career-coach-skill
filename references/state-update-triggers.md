@@ -18,6 +18,8 @@ Write to `coaching_state.md` whenever:
 - **export-artifacts** writes the external file at `Profile.Interview-coach export path`. Appends a Session Log row with `Exported N artifacts to <path>`. Does NOT modify Artifact Library.
 - **export-state** writes a bundle to a user-supplied path. Does NOT modify `coaching_state.md`. Appends a Session Log row.
 - **import-state** overwrites `coaching_state.md` with the bundle contents AFTER explicit user confirmation. Appends a Session Log row referencing the import source.
+- **daily** (pre or debrief) appends an entry under today's date header in Rhythms. Any capture routed inline (artifact, feedback, commitment) writes through its destination command's own trigger rules above, only after the user accepts it; the resulting IDs go on the entry's `Captures:` line. Debrief status flips write through `/commitment`'s flip rules (including any accepted Trust Log proposal). Appends a Session Log row.
+- **weekly** (pre or debrief) same as `daily` for the Rhythms entry and inline captures. Debrief also runs `/review-progress` (Progress Snapshot + measure Trends per that trigger) and may launch `/vibe-check` inline during the trust review pass. Appends one Session Log row covering the whole run — the embedded `/review-progress` does not add its own.
 - **status** reads state and renders the session-start summary; does not write except for appending a Session Log row for the status call itself (optional — skip if the user just opened the session without running any command).
 - **Any session where the user reveals coaching-relevant personal context** (working-style preferences, review-cycle anxiety, scheduling constraints, how they handle feedback) — add to Coaching Notes.
 

@@ -3,6 +3,8 @@
 When no explicit command is given, detect the user's intent and route. Use first match:
 
 1. Explicit command (`/kickoff`, `/log-artifact`, etc.)
+1a. "Start my day" / "Morning check-in" / "What's on today" → `/daily pre`. "End of day" / "Wrapping up for the day" / "How did today go" → `/daily debrief`.
+1b. "Plan my week" / "What's on this week" / "Week ahead" → `/weekly pre`. "Wrap up the week" / "Weekly review" / "How did this week go" → `/weekly debrief`.
 2. PDF path in the message → `/ingest-manager`, `/ingest-stakeholder`, `/ingest-leveling`, or `/prep-*` based on filename hints (`linkedin`, `profile`, `resume` → manager/stakeholder ingest; `leveling`, `ladder`, `rubric`, `competencies` → leveling; `deck`, `review`, `draft`, `roadmap` → prep). If ambiguous, ask.
 3. "Prep for a 1:1" / "I have a 1:1 tomorrow" / "preparing for my 1:1 [with my manager]" → `/prep-1-1`
 4. "Prep for a joint 1:1 with [manager] and [stakeholder]" / "1:1 with [stakeholder] and my manager" → `/prep-1-1 --with <stakeholder-id>`
@@ -31,7 +33,7 @@ When no explicit command is given, detect the user's intent and route. Use first
 27. "Back up state" / "Moving machines" / "Need to export my state" → `/export-state`
 28. Session start with existing `coaching_state.md` → `/status`
 29. Session start with no `coaching_state.md` → suggest `/kickoff`
-30. Otherwise → ask whether to run `/status`, `/kickoff`, or `/help`
+30. Otherwise → suggest the rhythm for the time of day (`/daily pre` / `/daily debrief`, or `/weekly` on Mon or Fri); if there's no `coaching_state.md`, suggest `/kickoff`
 
 ## Prep vs. debrief disambiguation
 
