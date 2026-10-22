@@ -1,6 +1,6 @@
 # career-coach-skill
 
-A persistent, evidence-driven career coach for data professionals — built as a Claude Code skill. Tracks performance against your company's leveling criteria, enriches your model of your manager and stakeholders over time, logs 1:1s and inbound feedback, builds a library of accomplishments in Google XYZ format, and shows you how you're trending toward your next career stage.
+A persistent, evidence-driven career coach for data professionals — built as a shared Claude Code and Codex skill. Tracks performance against your company's leveling criteria, enriches your model of your manager and stakeholders over time, logs 1:1s and inbound feedback, builds a library of accomplishments in Google XYZ format, and shows you how you're trending toward your next career stage.
 
 Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM, and generic data roles. Hands off to [`interview-coach-skill`](https://github.com/noamseg/interview-coach-skill) when it's time to prep interviews.
 
@@ -55,7 +55,30 @@ cd career-coach-skill
 
 ### 2. Activate the skill
 
-Claude Code picks up skills from the current working directory. From this repo's root, open a Claude Code session and run `/kickoff`.
+#### Codex
+
+Open this repository as your Codex project and start a new chat. The checked-in `.agents/skills/career-coach/` entry exposes the shared skill through symlinks, following [Codex skill discovery](https://developers.openai.com/codex/skills).
+
+Start with:
+
+```text
+$career-coach kickoff
+```
+
+Then use prompts such as `$career-coach weekly debrief`, `$career-coach log-artifact`, or `$career-coach review-progress`. The `/commands` throughout this README are coaching workflow labels, not installed Codex slash commands. Prefix them with `$career-coach` and omit the slash, particularly for `status` and `help`, which can overlap Codex built-ins.
+
+The symlinks keep the instructions and references in one place. State stays in the gitignored `coaching_state.md` at this repository’s root, so Claude Code and Codex can continue the same coaching history. Avoid simultaneous coaching sessions that write that file.
+
+#### Claude Code
+
+If the skill is already installed in Claude Code, keep using it there. To expose this checkout as a project skill, run from the repository root:
+
+```sh
+mkdir -p .claude/skills
+ln -s ../.. .claude/skills/career-coach
+```
+
+Start a new Claude Code session and invoke `/career-coach`, asking it to run `kickoff`. The workflow labels below are interpreted by the skill after activation.
 
 The first time you run `/kickoff`, the skill:
 

@@ -1,11 +1,11 @@
 # PDF Ingestion Protocol
 
-Applies to `/ingest-manager`, `/ingest-stakeholder`, and `/ingest-leveling`. The user supplies a PDF path (LinkedIn "Save to PDF" export, team leveling doc, OKR exports). Claude Code reads PDFs via the Read tool natively — no scraping, no external services.
+Applies to `/ingest-manager`, `/ingest-stakeholder`, and `/ingest-leveling`. The user supplies a PDF path (LinkedIn "Save to PDF" export, team leveling doc, OKR exports). Read PDFs using the active runtime’s available tools — no scraping or external upload is required.
 
 ## General flow
 
 1. **Confirm path.** User provides an absolute PDF path. If relative or ambiguous, ask for the absolute path. If the path is not a `.pdf`, confirm the user intends a non-PDF file and fall back to "paste the text instead."
-2. **Read.** Use the Read tool directly on the path. For PDFs under 10 pages, read without `pages`. For larger PDFs (common for leveling docs), request a page range first — ask the user which pages are the relevant ones, or scan a short early range to find the index.
+2. **Read.** In Claude Code, use the Read tool directly on the path; for PDFs under 10 pages, omit `pages`. In Codex, use an available PDF skill or document tool; otherwise use local extraction such as `pdftotext` or an installed Python PDF library. For scanned pages or layouts that lose meaning in text extraction, render and inspect the relevant pages with available image tools. For larger PDFs, scan the opening pages or index to identify relevant sections, asking the user if the scope remains unclear. If no usable reader is available, ask for pasted text rather than pretending the PDF was read.
 3. **Extract.** Follow the type-specific schema below. Produce a "What I Extracted" summary with per-field confidence labels (`High / Medium / Low`).
 4. **Gap questions.** Generate targeted follow-ups **one at a time**, prioritized by coaching relevance. Confirm or correct inferred fields; fill in blanks the PDF doesn't cover.
 5. **Write to state** with `Last enriched: [date]` and the confidence label. User-confirmed fields are `High`; PDF-inferred fields are `Medium`; the user's recall-only answers are `Medium` or `Low` depending on how specific they are.

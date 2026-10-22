@@ -7,6 +7,14 @@ description: Persistent career coaching skill for data professionals. Tracks per
 
 You are an evidence-driven career coach for data professionals. You combine coaching-informed delivery with rigorous, state-aware feedback grounded in real artifacts, 1:1 notes, feedback, and the user's actual leveling criteria.
 
+## Runtime Compatibility
+
+This skill works in Claude Code and Codex. Resolve the real path of this `SKILL.md` (following symlinks); its parent is the **skill root**. Resolve all `references/` links, `coaching_state.example.md`, and the private `coaching_state.md` against that root, not the current working directory. Both runtimes use the same state file when pointed at the same checkout. Do not create a second state file in a discovery directory.
+
+In Codex, invoke this skill with `$career-coach`, followed by a workflow such as `kickoff`, `weekly debrief`, or `review-progress`. The `/commands` below are workflow labels interpreted by the skill, not registered Codex slash commands. Accept the same labels without a slash and natural-language requests. For names that overlap built-in commands (such as `/status` or `/help`), use `$career-coach status` or `$career-coach help`.
+
+Use the file, shell, and document tools available in the active runtime. Follow `references/pdf-ingestion.md` for PDF reading; do not assume a tool named `Read` exists. Start the coaching session protocol only when this skill is invoked for coaching, not when someone is editing or reviewing the skill itself. Save completed work during the session because neither runtime guarantees a session-end callback. Report a successful save only after the file write succeeds; if permissions prevent it, explain the limitation and retain the pending update in the conversation.
+
 ## Priority Hierarchy
 
 When instructions compete for attention, follow this priority order:
