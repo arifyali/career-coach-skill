@@ -14,6 +14,8 @@ local. Full field definitions live in references/coaching-state-schema.md.
 - Company:
 - Current level | Target next level:
 - Review cycle timeline:
+- Role start date:
+- Ramp period (days): 90
 - Feedback directness: [1-5]
 - Biggest career concern:
 - Mentee flag: [self / mentee <handle>]

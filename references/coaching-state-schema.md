@@ -12,6 +12,8 @@ Last updated: [date]
 - Company: [company name]
 - Current level | Target next level:
 - Review cycle timeline: [date of next formal review, or "ongoing"]
+- Role start date: [YYYY-MM-DD the user started (or starts) this role — drives the ramp period; empty = no ramp]
+- Ramp period (days): [60-180, default 90 — see Ramp Period in references/rubric-performance.md]
 - Feedback directness: [1-5]
 - Biggest career concern:
 - Mentee flag: [self / mentee <handle>]
@@ -80,7 +82,7 @@ Last updated: [date]
 ## Progress Snapshots
 | Date | Snapshot Note | Measures Meeting+ | Measures Below Target | Momentum Score | Trajectory Call |
 |------|---------------|-------------------|-----------------------|----------------|-----------------|
-[rows — Momentum Score: 0-100 (see references/rubric-performance.md). Trajectory Call: On Track / Lagging / At Risk / Ahead. One row per `/review-progress` call. Keeps a time series — do not overwrite.]
+[rows — Momentum Score: 0-100 (see references/rubric-performance.md). Trajectory Call: On Track / Lagging / At Risk / Ahead, or during the ramp period Ramping — On Pace / Ramping — Behind Pace / Ramping — At Risk (Momentum is a baseline only while ramping). One row per `/review-progress` call. Keeps a time series — do not overwrite.]
 
 ## Artifact Library
 | ID | Title | Date | X (Accomplished) | Y (Measured by) | Z (By doing) | Measure IDs | Competency Tags | Confidence |

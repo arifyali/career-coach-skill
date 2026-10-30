@@ -93,7 +93,7 @@ If the week has no daily entries, say so and build the draft from captures alone
 
 Run the full `/review-progress` flow inline per `references/commands/review-progress.md`. The Momentum math, Trajectory Call, and Trust Status read all fire exactly as if `/review-progress` were run standalone. A Progress Snapshot row writes.
 
-**Do not** re-implement the Momentum math here. If `/review-progress` can't run (no Performance Measures Tracker, or no short-term Career Goal), surface the error and continue with the weekly-specific steps below — the ritual still has value even without the Momentum read.
+**Do not** re-implement the Momentum math here. A ramping user with an empty Tracker still gets the Ramp Pace read (see the ramping exception in `review-progress.md`). If `/review-progress` can't run otherwise (no Performance Measures Tracker, or no short-term Career Goal), surface the error and continue with the weekly-specific steps below — the ritual still has value even without the Momentum read.
 
 ### Step 3 — Weekly-specific structured prompts (3)
 

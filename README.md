@@ -10,7 +10,7 @@ Designed to flex across Data Scientist, Analytics Engineer, BI Engineer, Data PM
 - **Enriches your model of manager and stakeholders.** Export their LinkedIn as PDF; the skill parses it and asks targeted gap questions ("what are they measuring you on that's *not* on the leveling doc?").
 - **Captures 1:1s and feedback as first-class inputs.** A 1:1 entry can update manager background, add feedback to the stream, and refresh the review date on linked measures — all from one flow.
 - **Captures accomplishments in Google XYZ format.** "Accomplished X as measured by Y, by doing Z." The quantified-Y rule is enforced — vague wins don't make it into the library.
-- **Shows you how you're trending.** `/review-progress` computes a Momentum Score (0-100) and a Trajectory Call (On Track / Lagging / At Risk / Ahead) relative to your short-term career goal. The formula is simple and visible — you can dispute specific inputs.
+- **Shows you how you're trending.** `/review-progress` computes a Momentum Score (0-100) and a Trajectory Call (On Track / Lagging / At Risk / Ahead) relative to your short-term career goal. The formula is simple and visible — you can dispute specific inputs. New in a role? For the first 90 days (configurable) it judges your pace against dated ramp checkpoints instead, so a normal ramp doesn't read as "At Risk".
 - **Hands off to interview-coach-skill.** `/export-artifacts` emits your XYZ library in a format `interview-coach-skill` can seed STAR drafts from. Career coaching and interview coaching stay separate but connected.
 
 ## Commands at a glance
