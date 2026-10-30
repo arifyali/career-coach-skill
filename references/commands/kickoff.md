@@ -29,6 +29,7 @@ One question at a time:
 3. "What's your target next level?" (next promotion rung, or a lateral move target like "transition to Data PM")
 4. "What company?"
 5. "When is your next formal review cycle?" (date or "ongoing")
+6. "When did you start this role — or when do you start?" Write to `Profile.Role start date`. If tenure is under 180 days (or the date is in the future), say: "You're inside the ramp window, so for the first 90 days progress reads track ramp checkpoints instead of the Momentum thresholds. Want a different ramp length (60-180 days)?" Write the answer to `Profile.Ramp period (days)` (default 90). If tenure is already past the ramp length, write 90 without asking — the ramp won't apply. See Ramp Period in `references/rubric-performance.md`.
 
 ## Step 2 — Short-term career goal
 
@@ -93,6 +94,7 @@ Write a Session Log row: `kickoff | Profile + Career Goals + Company Context ini
 - Role / track: [role] (profile key: `role-profile-source`)
 - Current -> Target: [current level] -> [target level]
 - Company: [company], review cycle: [date or "ongoing"]
+- Role start date: [date] — ramp: [day N of 90 / starts [date] / complete]
 - Feedback directness: [1-5]
 - Mentee flag: [self / mentee <handle>]
 
@@ -202,6 +204,7 @@ Users re-run `/kickoff` after a role change, promotion, or team move. Don't rest
 1. Ask: "What's changed? Role, level, company, team, manager, or something else?"
 2. Show what carries over: "Your Artifact Library and Meeting Log stay. Performance Measures Tracker: ask whether to deprecate current rows (if the role or leveling doc changed) or keep them (if just a team move)."
 3. Update `Profile` fields. Preserve old values as a Coaching Note: "[date]: Previous role: [X] at [company]; current level [Y]; biggest concern [Z]."
+   - New company or new team: ask for the new `Role start date` (restarts the ramp). Promotion in place: ask whether to restart the ramp; default no, since the user keeps their context.
 4. Re-run Steps 4-5 (Company Context and Role-to-priority mapping) if the move was to a different team/company.
 5. Flag downstream work:
    - New leveling doc needed? Prompt for `/ingest-leveling`.

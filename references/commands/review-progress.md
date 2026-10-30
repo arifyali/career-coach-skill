@@ -6,8 +6,8 @@ Reads: everything. The Momentum formula uses Performance Measures Tracker + Prog
 
 ## Prerequisites
 
-- Performance Measures Tracker must exist and be non-empty.
-- `Career Goals.Short-term` should be set with a target review window; otherwise Trajectory Call is `Unassessed — set a short-term goal first`.
+- Performance Measures Tracker must exist and be non-empty. **Exception — ramping users** (see Ramp Period in `rubric-performance.md`): an empty Tracker doesn't block the run. Skip Steps 2-4, report Momentum as `n/a — no measures yet`, and run Step 5 on the ramp checkpoints (R3 will show as due or slipping).
+- `Career Goals.Short-term` should be set with a target review window; otherwise Trajectory Call is `Unassessed — set a short-term goal first`. Ramping users get a Ramp Pace call even without a target review window.
 
 ## Flow
 
@@ -50,11 +50,22 @@ If 3+ Critical feedback entries in Feedback Stream in the last 30 days are linke
 
 ### Step 5 — Trajectory Call
 
-Translate Momentum to a plain-English verdict per the thresholds in `rubric-performance.md`:
+First compute `Tenure` from `Profile.Role start date` and check whether the user is ramping (Ramp Period in `rubric-performance.md`).
+
+**Ramping** → Ramp Pace call:
+
+1. List every ramp checkpoint, marking its source (user success criteria or default) and status: Met / Slipping / Missed / Not yet due. Cite the state evidence for each Met (Meeting Log date, artifact ID, measure ID).
+2. Apply the Ramp Pace rules: Ramping — On Pace / Ramping — Behind Pace / Ramping — At Risk.
+3. Show Momentum as a baseline only, labeled as such.
+4. If the first review falls before day `Ramp length + 60`, add the review-during-ramp flag.
+
+**Not ramping** → translate Momentum to a plain-English verdict per the thresholds in `rubric-performance.md`:
 
 - Ahead / On Track / Lagging / At Risk / Unassessed
 
-Consider the Short-term Career Goal's `Target review window` — the thresholds shift when the window is close.
+Consider the Short-term Career Goal's `Target review window` — the thresholds shift when the window is close. On the first snapshot after the ramp ends, add the ramp-exit note.
+
+`Pre-start — no call` if `Tenure < 0`.
 
 ### Step 6 — Snapshot note
 
@@ -85,7 +96,7 @@ Full response blueprint. At Level 5 directness, lead with the biggest signal (ga
 
 - **What I Heard**: paraphrase of state ("You've logged 7 artifacts in the last 30 days, 4 against High-weight measures. Two Critical feedback entries on M003 from your manager.")
 - **What Is Working**: measures where Trend is Improving with Strong Evidence.
-- **Gaps To Close**: Declining measures, Over-assessment flags, feedback floor if active.
+- **Gaps To Close**: Declining measures, Over-assessment flags, feedback floor if active. During the ramp: slipping and missed checkpoints first; low maturity on its own is expected and is not a gap.
 - **Priority Move**: the single highest-leverage next step (specific command).
 - **Next Step**: the second-highest-leverage move.
 
@@ -94,9 +105,16 @@ Full response blueprint. At Level 5 directness, lead with the biggest signal (ga
 ```markdown
 ## Progress Snapshot — [date]
 
-### Trajectory: [On Track / Lagging / At Risk / Ahead / Unassessed]
-Momentum: **[N]/100** (delta vs. last snapshot: [+N / -N / first snapshot])
+### Trajectory: [On Track / Lagging / At Risk / Ahead / Unassessed | Ramping — On Pace / Behind Pace / At Risk | Pre-start — no call]
+Momentum: **[N]/100** (delta vs. last snapshot: [+N / -N / first snapshot]) [ramping: "— baseline; thresholds apply from day [Ramp length]"]
 Review window: [date] → [date]
+
+### Ramp Checkpoints (ramping users only — day [Tenure] of [Ramp length])
+| ID | Due | Checkpoint | Source | Status | Evidence |
+|----|-----|------------|--------|--------|----------|
+| R1 | day 14 | [checkpoint] | [default / user criteria] | [Met / Slipping / Missed / Not yet due] | [Meeting Log date, A###, M###] |
+Close this week: [slipping checkpoints, or "nothing slipping"]
+[If applicable: "First review lands at day [N] — ask [manager] how new hires are assessed in a partial first cycle."]
 
 ### Measure Movement
 - **Improved**: M###, M###

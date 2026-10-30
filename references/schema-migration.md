@@ -50,6 +50,8 @@ After reading `coaching_state.md` at session start, check whether it contains al
 - **Missing `Role profile source`**: Add the field with value `generic-data`. User can re-run `/kickoff` to pick a specific role.
 - **Missing `Interview-coach export path`**: Add the field with value `../interview-coach-skill/inbox/career-artifacts.md`. User can override at next `/kickoff` or `/export-artifacts` call.
 - **Missing `Mentee flag`**: Add the field with value `self`.
+- **Missing `Role start date`**: Add the field, empty. Empty means no ramp, so existing users keep the standard Trajectory Call. If Coaching Notes record a start date (the pre-start kickoff note does: "Start date [date]"), fill the field from that note and announce once: "I set your role start date to [date] from your kickoff notes — progress reads use ramp checkpoints until day [Ramp length]."
+- **Missing `Ramp period (days)`**: Add the field with value `90`. No announce.
 
 ## When migration DOES affect immediate recommendations
 

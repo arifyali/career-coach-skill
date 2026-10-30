@@ -77,6 +77,57 @@ Plain-English translation of Momentum, relative to the user's short-term Career 
 
 If the user has no short-term Career Goal set yet, output Momentum but mark Trajectory Call as `Unassessed — set a short-term goal first`.
 
+These thresholds apply only after the ramp period ends. During the ramp, use the Ramp Pace call below instead.
+
+## Ramp Period
+
+A new hire's measures all start at Not Yet Demonstrated, so Momentum sits low for months no matter how well the ramp is going. Scoring a ramp against the standard thresholds would read At Risk for everyone. During the ramp, the coach judges **pace against ramp checkpoints** (leading indicators) instead of Momentum (a lagging indicator).
+
+### When the ramp applies
+
+- `Tenure` = today − `Profile.Role start date`, in days.
+- `Ramp length` = `Profile.Ramp period (days)`. Default 90. Allowed 60–180.
+- The user is **ramping** when `Role start date` is set and `0 ≤ Tenure < Ramp length`.
+- Before the start date (`Tenure < 0`), the Trajectory Call is `Pre-start — no call`.
+- If `Role start date` is empty, there is no ramp: standard thresholds apply. Existing users are unaffected.
+
+### Ramp checkpoints
+
+Default checkpoints, scaled for a 90-day ramp. For a different ramp length, multiply each due day by `Ramp length / 90` and round to the nearest week.
+
+| ID | Due (day) | Checkpoint | How the coach checks it in state |
+|----|-----------|------------|----------------------------------|
+| R1 | 14 | First manager 1:1 logged, with explicit priorities captured | Meeting Log row with Type `1-1` and the manager; Manager Background `Explicit priorities` filled |
+| R2 | 30 | Review cycle timeline known | `Profile.Review cycle timeline` is not TBD |
+| R3 | 30 | Measures ingested | Performance Measures Tracker non-empty. If built from role-profile seeds rather than a leveling doc, the checkpoint is met but flagged |
+| R4 | 30 | Stakeholder map started | 2+ rows in Stakeholder Backgrounds with a Last Interaction date |
+| R5 | 60 | First artifact logged | 1+ Artifact Library row with a quantified Y (or valid `non-quant-reason`) |
+| R6 | 60 | Early signal on a High-weight measure | 1+ High-weight measure at Emerging or above |
+| R7 | 90 | End-to-end artifact on a High-weight measure | 1+ artifact with quantified Y linked to a High-weight measure, Confidence Medium or High |
+| R8 | 90 | Ramp-exit check-in with manager | Meeting Log row with the manager dated day 75 or later, with Explicit Feedback recorded |
+
+**Merge in the user's checkpoints.** If `Career Goals.Short-term.Success criteria` names day-based checkpoints inside the ramp (the pre-start kickoff seed does: "First 30 days …", "First 90 days …"), add each one to the list. Where a user checkpoint covers the same thing as a default (e.g., "first artifact logged" and R5), keep one row with the user's wording and the earlier due day. Defaults with no user counterpart stay. Criteria due after the ramp (e.g., "6 months …") are not ramp checkpoints. Show which source each checkpoint came from.
+
+### Ramp Pace call
+
+A checkpoint is **due** once `Tenure` reaches its due day. A due, unmet checkpoint is **slipping** for its first 14 days past due and **missed** after that.
+
+- **Ramping — On Pace**: no missed checkpoints.
+- **Ramping — Behind Pace**: exactly 1 missed checkpoint.
+- **Ramping — At Risk**: 2+ missed checkpoints, OR the feedback floor is active.
+
+Slipping checkpoints never change the call. They are named in the output as the thing to close this week.
+
+Momentum is still computed during the ramp (when the Tracker is non-empty) and shown as a **baseline**, but it is not compared to the standard thresholds. Label it: `Momentum [N] — baseline; thresholds apply from day [Ramp length]`.
+
+### Review during the ramp
+
+If the target review window or `Review cycle timeline` falls before `Ramp length + 60` days, flag it in every ramp snapshot: `First review lands at day [N]`. Add one question for the next manager 1:1: "How are new hires assessed in a partial first cycle?"
+
+### Ramp exit
+
+The first snapshot with `Tenure ≥ Ramp length` switches to the standard Trajectory Call. Add a snapshot note: `Ramp complete — standard thresholds now apply.` List every checkpoint still unmet at exit in the note, including those due on the ramp's last day (they get no grace period, since the ramp is over). Unmet checkpoints carry no score penalty, but they are the first gaps to close, and `/status` keeps surfacing them until met or the user drops them.
+
 ## Review Window
 
 The review window is the span the coach uses to assess Trend and detect stale evidence. Default: 30 days when `Review cycle timeline` is ongoing; otherwise, span from the previous `/review-progress` run through today.

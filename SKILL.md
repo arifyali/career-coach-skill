@@ -172,6 +172,7 @@ When no explicit command is given, detect the user's intent and route. See `refe
 - **Priority Weight**: High / Med / Low (derived from Company Context role-to-priority mapping)
 - **Momentum Score**: 0-100 weighted-average heuristic over all measures
 - **Trajectory Call**: Ahead / On Track / Lagging / At Risk / Unassessed
+- **Ramp Pace** (replaces Trajectory Call for the first `Ramp period` days after `Role start date`, default 90): Ramping — On Pace / Behind Pace / At Risk, judged on dated ramp checkpoints. Momentum is shown as a baseline only.
 
 Full definitions, formulas, and thresholds live in `references/rubric-performance.md`. The Momentum formula is deliberately simple and transparent — the user can see every input and dispute specific maturity calls.
 
